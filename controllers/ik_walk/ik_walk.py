@@ -5,6 +5,10 @@ from tkinter import ttk
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
 from controller import Robot
+import os
+base_dir = os.getcwd()
+dll_path = os.path.join(base_dir, "x64")
+os.add_dll_directory(dll_path)
 import starkit_ik_walk as sk
 
 params = sk.IKWalkParameters()
@@ -72,7 +76,7 @@ attribute_ranges = {
     "swingVel": (0.0, 5.0),
     "trunkXOffset": (-0.2, 0.2),
     "trunkYOffset": (-0.2, 0.2),
-    "trunkZOffset": (-0.2, 0.2),
+    "trunkZOffset": (0.01, 0.2),
     "trunkPitch": (-1.0, 1.0),
     "trunkRoll": (-1.0, 1.0)
 }

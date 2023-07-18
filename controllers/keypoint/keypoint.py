@@ -18,15 +18,24 @@ def read_json(file_path):
         data = json.load(file)
     return data
     
-def interpolate(points):
-    x = []
-    y = []
-    for point in points:
-        x.append(point[0])
-        y.append(point[1])
-    return interp1d(x, y, fill_value='extrapolate')
+def interpolate(motion):
+    motion_trajectory = {}
+    for joint in motion.items():
+        joint_name = joint[0]
+        if joint_name not in ("over", "remap"):
+            x = []
+            y = []
+            points = joint[1]
+            for point in points:
+                x.append(point[0])
+                y.append(point[1])
+            joint_trajectory = interp1d(x, y, fill_value='extrapolate')
+            motion_trajectory[joint_name] = joint_trajectory
+    return motion_trajectory
     
-    
+def send_commands(commands):
+    for joint_name, value in commands.items():
+        servos[joint_name].setPosition(deg2rad(value))
 
 
 # create the Robot instance.
@@ -37,22 +46,25 @@ timestep = int(robot.getBasicTimeStep())
 
 motion = read_json("move.json")
 
-left_elbow = robot.getDevice("left_elbow")
-left_elbow_sensor = robot.getDevice("left_elbow_sensor")
-left_elbow_sensor.enable(timestep)
-
-
-robot.step(timestep)
-
 timer = 0
-trajectory = interpolate(motion["left_elbow"])
-print(trajectory(0), trajectory(0.5), trajectory(0.6), trajectory(1))
+motion_trajectory = interpolate(motion)
+
+servos = {}
+
+for joint_name in motion_trajectory.keys():
+    servos[joint_name] = robot.getDevice(joint_name)
+
+print(motion_trajectory)
+#print(trajectory(0), trajectory(0.5), trajectory(0.6), trajectory(1))
 
 while robot.step(timestep) != -1:
     timer += timestep / 1000 
     if timer < motion["over"][1][0]:
-        target = trajectory(timer)
-    left_elbow.setPosition(deg2rad(target))
+        commands = {}
+        for joint_name, trajectory in motion_trajectory.items(): 
+            target = trajectory(timer)
+            commands[joint_name] = target
+    send_commands(commands)
     #print(current_point, motion["left_elbow"][current_point][1], rad2deg(left_elbow_sensor.getValue()))
 
 # Enter here exit cleanup code.

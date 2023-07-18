@@ -4,6 +4,7 @@
 #  from controller import Robot, Motor, DistanceSensor
 import math
 import json
+from scipy.interpolate import interp1d
 from controller import Robot
 
 def deg2rad(deg):
@@ -17,13 +18,15 @@ def read_json(file_path):
         data = json.load(file)
     return data
     
-def interpolate_points(start, end):
-    interpolated_points = []
-    for i in range(steps):
-        point = start + (end - start) / steps * i
-        interpolated_points.append(point)
-    print(interpolated_points)
-    return interpolated_points
+def interpolate(points):
+    x = []
+    y = []
+    for point in points:
+        x.append(point[0])
+        y.append(point[1])
+    return interp1d(x, y, fill_value='extrapolate')
+    
+    
 
 
 # create the Robot instance.
@@ -38,32 +41,18 @@ left_elbow = robot.getDevice("left_elbow")
 left_elbow_sensor = robot.getDevice("left_elbow_sensor")
 left_elbow_sensor.enable(timestep)
 
-current_point = 0
-current_sub_point = 0
-steps = 10
-target = 0
-# Main loop:
-# - perform simulation steps until Webots is stopping the controller
+
 robot.step(timestep)
-interpolated_points = interpolate_points(left_elbow_sensor.getValue(), 
-                                         deg2rad(motion["left_elbow"][0][1]))
+
+timer = 0
+trajectory = interpolate(motion["left_elbow"])
+print(trajectory(0), trajectory(0.5), trajectory(0.6), trajectory(1))
 
 while robot.step(timestep) != -1:
-    if current_point < motion["over"][1][0]:
-        # if current_sub_point > steps-1:
-        # current_sub_point = 0
-        current_point += 1
-        interpolated_points = interpolate_points(deg2rad(motion["left_elbow"][current_point - 1][1]), 
-                                         deg2rad(motion["left_elbow"][current_point][1]))
-    if current_sub_point > steps-1: 
-        current_sub_point = steps-1
-    else:
-        current_sub_point += 1
-    print(current_sub_point)
-    target = interpolated_points[current_sub_point]
-    
-    
-    left_elbow.setPosition(target)
+    timer += timestep / 1000 
+    if timer < motion["over"][1][0]:
+        target = trajectory(timer)
+    left_elbow.setPosition(deg2rad(target))
     #print(current_point, motion["left_elbow"][current_point][1], rad2deg(left_elbow_sensor.getValue()))
 
 # Enter here exit cleanup code.

@@ -7,6 +7,29 @@ import json
 from scipy.interpolate import interp1d
 from controller import Robot
 
+dofs = [
+    "head_pitch",
+    "head_yaw",
+    "left_shoulder_pitch",
+    "left_shoulder_roll",
+    "right_shoulder_pitch",
+    "right_shoulder_roll",
+    "left_elbow",
+    "right_elbow",
+    "left_hip_pitch",
+    "left_hip_roll",
+    "left_hip_yaw",
+    "right_hip_pitch",
+    "right_hip_roll",
+    "right_hip_yaw",
+    "left_knee",
+    "right_knee",
+    "left_ankle_pitch",
+    "left_ankle_roll",
+    "right_ankle_pitch",
+    "right_ankle_roll"
+]
+
 def deg2rad(deg):
     return deg / 180 * math.pi
 def rad2deg(rad):

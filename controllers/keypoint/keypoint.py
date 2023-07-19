@@ -39,7 +39,16 @@ def rad2deg(rad):
 def read_json(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
-    return data
+    refactored_data = {}
+    for joint_name in data.keys():
+        if joint_name not in ("over", "remap", "head_yaw", "head_pitch"):
+            if "left" not in joint_name:
+                refactored_data["left_" + joint_name] = data[joint_name]
+            if "right" not in joint_name:
+                refactored_data["right_" + joint_name] = data[joint_name]
+        else:
+            refactored_data[joint_name] = data[joint_name]
+    return refactored_data
     
 def interpolate(motion):
     motion_trajectory = {}

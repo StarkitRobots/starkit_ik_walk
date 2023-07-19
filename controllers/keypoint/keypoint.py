@@ -81,7 +81,7 @@ robot = Robot()
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
 
-motion = read_json("move.json")
+motion = read_json("standup_front.json")
 
 motion_timer = 0
 motion_trajectory = interpolate(motion)

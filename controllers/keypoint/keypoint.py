@@ -62,6 +62,8 @@ def interpolate(motion):
             y.append(point[1])
         if joint_name not in ("over", "remap"):
             joint_trajectory = interp1d(x, y, kind='linear', fill_value='extrapolate')
+        elif joint_name == "remap":
+            joint_trajectory = interp1d(x, y, kind='next', fill_value='extrapolate')
         else:
             joint_trajectory = interp1d(x, y, kind='zero', fill_value='extrapolate')
         motion_trajectory[joint_name] = joint_trajectory       

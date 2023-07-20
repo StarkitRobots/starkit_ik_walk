@@ -1,0 +1,40 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/SAHRV74/SAHRV74Robocup.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/balls/protos/Ball.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.1446866058556332 -0.05274810750172802 0.9880705558010334 3.833110924930517
+  position 3.6744777810850215 3.1121600532562983 1.5987647350279584
+  follow "red player 1"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+  floorTileSize 0.1 0.1
+}
+Ball {
+  translation 1.13475 0.133218 0.1025
+  color 0 1 0
+  radius 0.1
+}
+DirectionalLight {
+  ambientIntensity 1
+  direction -20 0 0
+  intensity 3
+}
+SAHRV74Robocup {
+  controller "head_controller"
+  translation 0 0 0.4
+  controller [
+    "head_controller"
+  ]
+}

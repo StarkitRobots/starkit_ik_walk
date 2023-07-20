@@ -60,7 +60,7 @@ def run_standup_front():
         for joint_name, trajectory in standup_front_trajectory.items(): 
             target = trajectory(standup_front_timer)
             commands[joint_name] = target
-    send_commands(commands)
+        send_commands(commands)
     
 def run_standup_back():
     global standup_back_timer
@@ -71,7 +71,7 @@ def run_standup_back():
         for joint_name, trajectory in standup_back_trajectory.items(): 
             target = trajectory(standup_back_timer)
             commands[joint_name] = target
-    send_commands(commands)
+        send_commands(commands)
 
 # create the Robot instance.
 robot = Robot()
@@ -103,16 +103,40 @@ for joint_name in standup_front_trajectory.keys():
     if joint_name not in ("over", "remap"):
         servos[joint_name] = robot.getDevice(joint_name)
 
+state = "ready"
+standup_is_over = True
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
     roll, pitch, yaw = imu.getRollPitchYaw()
-    if pitch < -1.0:
-        print("I'm fallen on the front")
+    
+    if pitch < -1.0 and standup_is_over:
+        state = "fallen_front"
+        standup_is_over = False
+        standup_back_timer = 0
+    elif pitch > 1.0 and standup_is_over:
+        state = "fallen_back"
+        standup_is_over = False
+        standup_front_timer = 0
+    elif abs(roll) > 1.0 and standup_is_over:
+        state = "fallen_back"
+        standup_is_over = False
+        standup_front_timer = 0
+    elif abs(pitch) < 0.3 and standup_is_over:
+        state = "ready"
+        standup_front_timer = 0
+        standup_back_timer = 0
+    
+    if state == "fallen_front":
         run_standup_front()
-    if pitch > 1.0:
-        print("I'm fallen on the back")
+        if standup_front_trajectory["over"](standup_front_timer):
+            standup_is_over = True
+    elif state == "fallen_back":
         run_standup_back()
+        if standup_back_trajectory["over"](standup_back_timer):
+            standup_is_over = True
+    else:
+        pass
         
 
 # Enter here exit cleanup code.

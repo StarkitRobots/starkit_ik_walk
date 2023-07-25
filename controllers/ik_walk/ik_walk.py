@@ -7,8 +7,10 @@ from tkinter import ttk
 from controller import Robot
 import os
 base_dir = os.getcwd()
-dll_path = os.path.join(base_dir, "x64")
-os.add_dll_directory(dll_path)
+from sys import platform
+if platform != "linux" and platform != "linux2":
+    dll_path = os.path.join(base_dir, "x64")
+    os.add_dll_directory(dll_path)
 import starkit_ik_walk as sk
 
 params = sk.IKWalkParameters()

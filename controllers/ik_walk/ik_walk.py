@@ -15,11 +15,19 @@ import starkit_ik_walk as sk
 
 params = sk.IKWalkParameters()
 
-params.distHipToKnee = 0.093
-params.distKneeToAnkle = 0.105
-params.distAnkleToGround = 0.032
-params.distFeetLateral = 0.092
-params.freq = 1.7
+# SAHR
+# params.distHipToKnee = 0.141# 0.093
+# params.distKneeToAnkle = 0.14# 0.105
+# params.distAnkleToGround = 0.042# 0.032
+# params.distFeetLateral = 0.092
+
+# Roki2
+params.distHipToKnee = 0.113# 0.093
+params.distKneeToAnkle = 0.082# 0.105
+params.distAnkleToGround = 0.024# 0.032
+params.distFeetLateral = 0.079
+
+params.freq = 2.025
 params.enabledGain = 0.0
 params.supportPhaseRatio = 0.0
 params.footYOffset = 0.025
@@ -37,9 +45,9 @@ params.riseUpVel = 4.0
 params.riseDownVel = 4.0
 params.swingPause = 0.0
 params.swingVel = 4.0
-params.trunkXOffset = 0.02
+params.trunkXOffset = 0.002
 params.trunkYOffset = 0.0
-params.trunkPitch = 0.15
+params.trunkPitch = 0.119
 params.trunkRoll = 0.0
 params.extraLeftX = 0.0
 params.extraLeftY = 0.0
@@ -163,13 +171,15 @@ dof_names = [
     'right_elbow',
     'left_hip_yaw', 
     'left_hip_roll', 
-    'left_hip_pitch', 
-    'left_knee', 
+    'left_hip_pitch',
+    'left_upper_knee', 
+    'left_knee',
     'left_ankle_pitch', 
     'left_ankle_roll', 
     'right_hip_yaw', 
     'right_hip_roll', 
     'right_hip_pitch', 
+    'right_upper_knee', 
     'right_knee', 
     'right_ankle_pitch', 
     'right_ankle_roll']
@@ -185,6 +195,8 @@ def send_command(command: sk.IKWalkOutputs):
     for name, motor in servos.items():
         if "elbow" in name:
             motor.setPosition(-2.5)
+        elif "upper_knee" in name:
+            motor.setPosition(0)
         else:
             motor.setPosition(getattr(command, name))
 

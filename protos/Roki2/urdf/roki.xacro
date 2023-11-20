@@ -1,0 +1,752 @@
+<?xml version="1.0" ?>
+<robot name="roki" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find roki_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find roki_description)/urdf/roki.trans" />
+<xacro:include filename="$(find roki_description)/urdf/roki.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="2.9200028407238833e-05 0.03136339266823339 0.049232642874940113" rpy="0 0 0"/>
+    <mass value="0.6978470671486154"/>
+    <inertia ixx="0.000836" iyy="0.000655" izz="0.001221" ixy="-1e-06" iyz="-4.8e-05" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/base_link.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/base_link.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Waist_1">
+  <inertial>
+    <origin xyz="2.308951126554241e-05 0.010043771263089902 -0.019580735770714907" rpy="0 0 0"/>
+    <mass value="0.15761065350197656"/>
+    <inertia ixx="4.5e-05" iyy="0.000189" izz="0.000199" ixy="-0.0" iyz="-1e-06" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 -0.0 -0.0039" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Waist_1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 -0.0 -0.0039" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Waist_1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="U_Dual_Lever_Carbon_1__1">
+  <inertial>
+    <origin xyz="4.508199369368526e-14 -0.00459793550468748 -0.010314227100914147" rpy="0 0 0"/>
+    <mass value="0.009545203780731138"/>
+    <inertia ixx="5e-06" iyy="1e-06" izz="4e-06" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.04 0.0 0.0339" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/U_Dual_Lever_Carbon_1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.04 0.0 0.0339" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/U_Dual_Lever_Carbon_1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="U_Dual_Lever_Carbon_2">
+  <inertial>
+    <origin xyz="4.5900783174346316e-14 -0.004597935504687689 -0.010314227100913793" rpy="0 0 0"/>
+    <mass value="0.009545203780731142"/>
+    <inertia ixx="5e-06" iyy="1e-06" izz="4e-06" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.04 0.0 0.0339" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/U_Dual_Lever_Carbon_2.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.04 0.0 0.0339" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/U_Dual_Lever_Carbon_2.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Robot_Football_Player_SKS-2501_Neck_Carbonv2_1">
+  <inertial>
+    <origin xyz="1.59054234997918e-07 0.0004029194592024207 0.00889294708045188" rpy="0 0 0"/>
+    <mass value="0.006889915174480099"/>
+    <inertia ixx="1e-06" iyy="3e-06" izz="3e-06" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-2.5e-05 0.011152 -0.07478" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Robot_Football_Player_SKS-2501_Neck_Carbonv2_1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-2.5e-05 0.011152 -0.07478" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Robot_Football_Player_SKS-2501_Neck_Carbonv2_1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1">
+  <inertial>
+    <origin xyz="0.019224047998985833 0.015494041418051888 0.03424850028891592" rpy="0 0 0"/>
+    <mass value="0.26416283236894345"/>
+    <inertia ixx="0.000253" iyy="0.000229" izz="0.000221" ixy="0.0" iyz="-3.3e-05" ixz="-3e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.019975 0.011152 -0.10478" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.019975 0.011152 -0.10478" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1">
+  <inertial>
+    <origin xyz="0.0058858874958540724 0.028181458629030074 -0.03337571755207666" rpy="0 0 0"/>
+    <mass value="0.12983667443511107"/>
+    <inertia ixx="9.4e-05" iyy="7.7e-05" izz="3.4e-05" ixy="-3e-06" iyz="1.9e-05" ixz="1.1e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0799 0.03121 -0.0494" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0799 0.03121 -0.0494" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1">
+  <inertial>
+    <origin xyz="-0.0058842426537036585 0.028181458629013886 -0.03337600758181479" rpy="0 0 0"/>
+    <mass value="0.12983667443511687"/>
+    <inertia ixx="9.4e-05" iyy="7.7e-05" izz="3.4e-05" ixy="3e-06" iyz="1.9e-05" ixz="-1.1e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0799 0.03121 -0.0494" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0799 0.03121 -0.0494" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Elbow_Bracket_01_1">
+  <inertial>
+    <origin xyz="-0.004047474545655377 0.0010168978596869216 -0.016722696886682605" rpy="0 0 0"/>
+    <mass value="0.05553085932222209"/>
+    <inertia ixx="1.2e-05" iyy="1.1e-05" izz="1.6e-05" ixy="0.0" iyz="0.0" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.09239 0.008635 0.021432" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Elbow_Bracket_01_1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.09239 0.008635 0.021432" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Elbow_Bracket_01_1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Elbow_Bracket_01_1__1">
+  <inertial>
+    <origin xyz="0.004047474545655905 0.0010168978596869606 -0.016722696886683375" rpy="0 0 0"/>
+    <mass value="0.055530859322222265"/>
+    <inertia ixx="1.2e-05" iyy="1.1e-05" izz="1.6e-05" ixy="-0.0" iyz="0.0" ixz="-1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.09239 0.008635 0.021432" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Elbow_Bracket_01_1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.09239 0.008635 0.021432" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Elbow_Bracket_01_1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Hand_Football_Player_05_1">
+  <inertial>
+    <origin xyz="0.015641121769252822 1.938563667230886e-08 -0.06739227885463536" rpy="0 0 0"/>
+    <mass value="0.048927254647909736"/>
+    <inertia ixx="8.2e-05" iyy="8.4e-05" izz="1.1e-05" ixy="-0.0" iyz="-0.0" ixz="-1.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.07838 0.016535 0.04218" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hand_Football_Player_05_1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.07838 0.016535 0.04218" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hand_Football_Player_05_1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Hand_Football_Player_05__1__1">
+  <inertial>
+    <origin xyz="-0.015641121769251268 -1.9385632887142235e-08 -0.06739227885463595" rpy="0 0 0"/>
+    <mass value="0.04892725464790963"/>
+    <inertia ixx="8.2e-05" iyy="8.4e-05" izz="1.1e-05" ixy="-0.0" iyz="0.0" ixz="1.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.07838 0.016535 0.04218" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hand_Football_Player_05__1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.07838 0.016535 0.04218" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hand_Football_Player_05__1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="U_Lever_Carbon_2__1">
+  <inertial>
+    <origin xyz="0.007714216006614476 4.458239333260394e-16 -2.4577562207639403e-14" rpy="0 0 0"/>
+    <mass value="0.007572394947205684"/>
+    <inertia ixx="3e-06" iyy="1e-06" izz="3e-06" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0559 0.01121 -0.0494" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/U_Lever_Carbon_2__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0559 0.01121 -0.0494" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/U_Lever_Carbon_2__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="U_Lever_Carbon_1__1">
+  <inertial>
+    <origin xyz="-0.007714216006614295 2.393918396847994e-16 -2.4195923042924505e-14" rpy="0 0 0"/>
+    <mass value="0.007572394947205684"/>
+    <inertia ixx="3e-06" iyy="1e-06" izz="3e-06" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0559 0.01121 -0.0494" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/U_Lever_Carbon_1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0559 0.01121 -0.0494" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/U_Lever_Carbon_1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Knee_1__1">
+  <inertial>
+    <origin xyz="0.01861091530213354 -0.009330309461074559 -0.016566663881952354" rpy="0 0 0"/>
+    <mass value="0.10930325968922582"/>
+    <inertia ixx="5.3e-05" iyy="5e-05" izz="3.3e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0196 0.001 0.1484" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Knee_1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0196 0.001 0.1484" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Knee_1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Hip_Shin_Carbon_1__1__1">
+  <inertial>
+    <origin xyz="0.01999999999999781 -0.00810351282531593 -0.03792612915551327" rpy="0 0 0"/>
+    <mass value="0.022625400240065405"/>
+    <inertia ixx="1.3e-05" iyy="1.8e-05" izz="1.2e-05" ixy="-0.0" iyz="1e-06" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0196 0.001 0.1814" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hip_Shin_Carbon_1__1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0196 0.001 0.1814" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hip_Shin_Carbon_1__1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Knee_1__1__1">
+  <inertial>
+    <origin xyz="0.021189084697862258 -0.009330309461045357 -0.016566663882006533" rpy="0 0 0"/>
+    <mass value="0.10930325968922545"/>
+    <inertia ixx="5.3e-05" iyy="5e-05" izz="3.3e-05" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0596 0.001 0.1484" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Knee_1__1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0596 0.001 0.1484" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Knee_1__1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Hip_Shin_Carbon_2__1">
+  <inertial>
+    <origin xyz="-0.020000000000005392 -0.008103512825321298 -0.03792612915550861" rpy="0 0 0"/>
+    <mass value="0.022625400240065388"/>
+    <inertia ixx="1.3e-05" iyy="1.8e-05" izz="1.2e-05" ixy="-0.0" iyz="1e-06" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0198 0.001 0.1814" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hip_Shin_Carbon_2__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0198 0.001 0.1814" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hip_Shin_Carbon_2__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Dual_Servo_Al_022_3">
+  <inertial>
+    <origin xyz="0.019442839528037853 0.015065566617809313 0.011274811249782246" rpy="0 0 0"/>
+    <mass value="0.11852191596762508"/>
+    <inertia ixx="8.3e-05" iyy="3.3e-05" izz="7.2e-05" ixy="-1e-06" iyz="-7e-06" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0598 0.001 0.2639" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Dual_Servo_Al_022_3.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0598 0.001 0.2639" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Dual_Servo_Al_022_3.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Shoe_Flex_1__1">
+  <inertial>
+    <origin xyz="0.01077197187732682 -0.029657932964981537 -0.020426201063386384" rpy="0 0 0"/>
+    <mass value="0.05098521202956298"/>
+    <inertia ixx="4.7e-05" iyy="2.1e-05" izz="6.6e-05" ixy="0.0" iyz="-0.0" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.039 -0.0211 0.2639" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Shoe_Flex_1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.039 -0.0211 0.2639" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Shoe_Flex_1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="roki2_simlify_Dual_Servo_Al_022Copyv1_2">
+  <inertial>
+    <origin xyz="0.020357428670802896 0.015064587409574209 0.011268101437178046" rpy="0 0 0"/>
+    <mass value="0.1185219159610662"/>
+    <inertia ixx="8.3e-05" iyy="3.3e-05" izz="7.2e-05" ixy="1e-06" iyz="-7e-06" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0196 0.001 0.2639" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/roki2_simlify_Dual_Servo_Al_022Copyv1_2.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0196 0.001 0.2639" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/roki2_simlify_Dual_Servo_Al_022Copyv1_2.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Shoe_Flex_1">
+  <inertial>
+    <origin xyz="-0.010772002418327563 0.01894180700262037 -0.02042626598922509" rpy="0 0 0"/>
+    <mass value="0.05098531070774809"/>
+    <inertia ixx="4.7e-05" iyy="2.1e-05" izz="6.6e-05" ixy="-0.0" iyz="-0.0" ixz="-1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.039394 0.027478 0.263751" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Shoe_Flex_1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.039394 0.027478 0.263751" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Shoe_Flex_1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Dual_Servo_Al_022__1__1">
+  <inertial>
+    <origin xyz="0.0009571604719541549 -0.007034433382188548 -0.011274811249774988" rpy="0 0 0"/>
+    <mass value="0.11852191596762508"/>
+    <inertia ixx="8.3e-05" iyy="3.3e-05" izz="7.2e-05" ixy="1e-06" iyz="7e-06" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.04 -0.0211 0.0659" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Dual_Servo_Al_022__1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.04 -0.0211 0.0659" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Dual_Servo_Al_022__1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1">
+  <inertial>
+    <origin xyz="-0.0009574286708060598 -0.0070354125904229115 -0.011268101437177519" rpy="0 0 0"/>
+    <mass value="0.1185219159610662"/>
+    <inertia ixx="8.3e-05" iyy="3.3e-05" izz="7.2e-05" ixy="-1e-06" iyz="7e-06" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.04 -0.0211 0.0659" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/roki2_simlify_Dual_Servo_Al_022Copyv1__1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.04 -0.0211 0.0659" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/roki2_simlify_Dual_Servo_Al_022Copyv1__1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Hip_Shin_Carbon_2">
+  <inertial>
+    <origin xyz="0.019999999999999296 -0.008103512825317922 -0.04457387084448518" rpy="0 0 0"/>
+    <mass value="0.022625400240065388"/>
+    <inertia ixx="1.3e-05" iyy="1.8e-05" izz="1.2e-05" ixy="0.0" iyz="-1e-06" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0196 0.001 0.0659" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hip_Shin_Carbon_2.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0196 0.001 0.0659" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hip_Shin_Carbon_2.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Hip_Shin_Carbon_1__1">
+  <inertial>
+    <origin xyz="-0.0200000000000011 -0.00810351282531565 -0.044573870844484706" rpy="0 0 0"/>
+    <mass value="0.022625400240065405"/>
+    <inertia ixx="1.3e-05" iyy="1.8e-05" izz="1.2e-05" ixy="0.0" iyz="-1e-06" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0196 0.001 0.0659" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hip_Shin_Carbon_1__1.stl"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0196 0.001 0.0659" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/Hip_Shin_Carbon_1__1.stl"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="waist_yaw" type="continuous">
+  <origin xyz="0.0 0.0 0.0039" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Waist_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+</joint>
+
+<joint name="left_hip_yaw" type="revolute">
+  <origin xyz="0.04 -0.0 -0.0378" rpy="0 0 0"/>
+  <parent link="Waist_1"/>
+  <child link="U_Dual_Lever_Carbon_1__1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+  <limit upper="0.523599" lower="-0.523599" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_hip_yaw" type="revolute">
+  <origin xyz="-0.04 -0.0 -0.0378" rpy="0 0 0"/>
+  <parent link="Waist_1"/>
+  <child link="U_Dual_Lever_Carbon_2"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+  <limit upper="0.523599" lower="-0.523599" effort="100" velocity="100"/>
+</joint>
+
+<joint name="head_yaw" type="revolute">
+  <origin xyz="2.5e-05 -0.011152 0.07478" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Robot_Football_Player_SKS-2501_Neck_Carbonv2_1"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+  <limit upper="0.785398" lower="-0.785398" effort="100" velocity="100"/>
+</joint>
+
+<joint name="head_pitch" type="revolute">
+  <origin xyz="-0.02 0.0 0.03" rpy="0 0 0"/>
+  <parent link="Robot_Football_Player_SKS-2501_Neck_Carbonv2_1"/>
+  <child link="Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1"/>
+  <axis xyz="-1.0 -0.0 0.0"/>
+  <limit upper="0.698132" lower="-1.919862" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_shoulder_roll" type="revolute">
+  <origin xyz="0.024 -0.02 0.0" rpy="0 0 0"/>
+  <parent link="U_Lever_Carbon_2__1"/>
+  <child link="roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1"/>
+  <axis xyz="-0.0 -1.0 0.0"/>
+  <limit upper="2.96706" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_shoulder_roll" type="revolute">
+  <origin xyz="-0.024 -0.02 0.0" rpy="0 0 0"/>
+  <parent link="U_Lever_Carbon_1__1"/>
+  <child link="roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1"/>
+  <axis xyz="-0.0 -1.0 -0.0"/>
+  <limit upper="0.0" lower="-2.96706" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_elbow_yaw" type="revolute">
+  <origin xyz="-0.01249 0.022575 -0.070832" rpy="0 0 0"/>
+  <parent link="roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1"/>
+  <child link="Elbow_Bracket_01_1"/>
+  <axis xyz="-0.173648 -0.0 -0.984808"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_elbow_yaw" type="revolute">
+  <origin xyz="0.01249 0.022575 -0.070832" rpy="0 0 0"/>
+  <parent link="roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1"/>
+  <child link="Elbow_Bracket_01_1__1"/>
+  <axis xyz="0.173648 0.0 -0.984808"/>
+  <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_elbow_pitch" type="revolute">
+  <origin xyz="-0.01401 -0.0079 -0.020748" rpy="0 0 0"/>
+  <parent link="Elbow_Bracket_01_1__1"/>
+  <child link="Hand_Football_Player_05_1"/>
+  <axis xyz="0.984808 0.0 0.173648"/>
+  <limit upper="0.174533" lower="-1.919862" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_elbow_pitch" type="revolute">
+  <origin xyz="0.01401 -0.0079 -0.020748" rpy="0 0 0"/>
+  <parent link="Elbow_Bracket_01_1"/>
+  <child link="Hand_Football_Player_05__1__1"/>
+  <axis xyz="0.984808 0.0 -0.173648"/>
+  <limit upper="0.174533" lower="-1.919862" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_shoulder_pitch" type="revolute">
+  <origin xyz="0.0559 -0.01121 0.0494" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="U_Lever_Carbon_2__1"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_shoulder_pitch" type="revolute">
+  <origin xyz="-0.0559 -0.01121 0.0494" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="U_Lever_Carbon_1__1"/>
+  <axis xyz="-1.0 -0.0 0.0"/>
+  <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_upper_knee" type="revolute">
+  <origin xyz="0.0 0.0 -0.0825" rpy="0 0 0"/>
+  <parent link="Hip_Shin_Carbon_2"/>
+  <child link="Knee_1__1"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="2.094395" lower="-0.087266" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_bottom_knee" type="revolute">
+  <origin xyz="0.0 0.0 -0.033" rpy="0 0 0"/>
+  <parent link="Knee_1__1"/>
+  <child link="Hip_Shin_Carbon_1__1__1"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="2.094395" lower="-0.087266" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_upper_knee" type="revolute">
+  <origin xyz="-0.04 0.0 -0.0825" rpy="0 0 0"/>
+  <parent link="Hip_Shin_Carbon_1__1"/>
+  <child link="Knee_1__1__1"/>
+  <axis xyz="1.0 -0.0 -0.0"/>
+  <limit upper="2.094395" lower="-0.087266" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_bottom_knee" type="revolute">
+  <origin xyz="0.0398 0.0 -0.033" rpy="0 0 0"/>
+  <parent link="Knee_1__1__1"/>
+  <child link="Hip_Shin_Carbon_2__1"/>
+  <axis xyz="1.0 -0.0 0.0"/>
+  <limit upper="2.094395" lower="-0.087266" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_ankle_pitch" type="revolute">
+  <origin xyz="-0.04 0.0 -0.0825" rpy="0 0 0"/>
+  <parent link="Hip_Shin_Carbon_2__1"/>
+  <child link="Dual_Servo_Al_022_3"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="1.22173" lower="-0.785398" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_ankle_roll" type="revolute">
+  <origin xyz="0.0194 0.0221 0.0" rpy="0 0 0"/>
+  <parent link="roki2_simlify_Dual_Servo_Al_022Copyv1_2"/>
+  <child link="Shoe_Flex_1__1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+  <limit upper="0.523599" lower="-0.523599" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_ankle_pitch" type="revolute">
+  <origin xyz="0.0 0.0 -0.0825" rpy="0 0 0"/>
+  <parent link="Hip_Shin_Carbon_1__1__1"/>
+  <child link="roki2_simlify_Dual_Servo_Al_022Copyv1_2"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="0.872665" lower="-0.698132" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_ankle_roll" type="revolute">
+  <origin xyz="0.020406 -0.026478 0.000149" rpy="0 0 0"/>
+  <parent link="Dual_Servo_Al_022_3"/>
+  <child link="Shoe_Flex_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+  <limit upper="0.523599" lower="-0.523599" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_hip_roll" type="revolute">
+  <origin xyz="0.0 0.0211 -0.032" rpy="0 0 0"/>
+  <parent link="U_Dual_Lever_Carbon_2"/>
+  <child link="Dual_Servo_Al_022__1__1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+  <limit upper="0.523599" lower="-0.523599" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_hip_roll" type="revolute">
+  <origin xyz="0.0 0.0211 -0.032" rpy="0 0 0"/>
+  <parent link="U_Dual_Lever_Carbon_1__1"/>
+  <child link="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+  <limit upper="0.523599" lower="-0.523599" effort="100" velocity="100"/>
+</joint>
+
+<joint name="left_hip_pitch" type="revolute">
+  <origin xyz="-0.0204 -0.0221 0.0" rpy="0 0 0"/>
+  <parent link="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1"/>
+  <child link="Hip_Shin_Carbon_2"/>
+  <axis xyz="1.0 0.0 -0.0"/>
+  <limit upper="2.094395" lower="-1.745329" effort="100" velocity="100"/>
+</joint>
+
+<joint name="right_hip_pitch" type="revolute">
+  <origin xyz="0.0204 -0.0221 0.0" rpy="0 0 0"/>
+  <parent link="Dual_Servo_Al_022__1__1"/>
+  <child link="Hip_Shin_Carbon_1__1"/>
+  <axis xyz="1.0 -0.0 -0.0"/>
+  <limit upper="2.094395" lower="-1.745329" effort="100" velocity="100"/>
+</joint>
+
+</robot>

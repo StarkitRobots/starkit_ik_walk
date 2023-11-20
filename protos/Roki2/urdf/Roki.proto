@@ -1,0 +1,1288 @@
+#VRML_SIM R2023b utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the Roki
+# Extracted from: F:/roki2/roki_description/urdf/roki.urdf
+
+PROTO Roki [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "Roki"  # Is `Robot.name`.
+  field  SFString    controller      "void"  # Is `Robot.controller`.
+  field  MFString    controllerArgs  []      # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""      # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE   # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE    # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE   # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Shape {
+        appearance DEF silver PBRAppearance {
+          baseColor 0.500000 0.500000 0.500000
+          roughness 1.000000
+          metalness 0
+        }
+        geometry DEF base_link Mesh {
+          url "../meshes/base_link.stl"
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -0.000000 -0.000000 -1.000000
+          anchor 0.000000 0.000000 0.003900
+        }
+        device [
+          RotationalMotor {
+            name "waist_yaw"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "waist_yaw_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.000000 0.000000 0.003900
+          children [
+            Pose {
+              translation 0.000000 -0.000000 -0.003900
+              children [
+                Shape {
+                  appearance USE silver
+                  geometry DEF Waist_1 Mesh {
+                    url "../meshes/Waist_1.stl"
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis -0.000000 -0.000000 -1.000000
+                anchor 0.040000 -0.000000 -0.037800
+              }
+              device [
+                RotationalMotor {
+                  name "left_hip_yaw"
+                  maxVelocity 10.0
+                  minPosition -0.523599
+                  maxPosition 0.523599
+                  maxTorque 5.0
+                }
+                PositionSensor {
+                  name "left_hip_yaw_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.040000 -0.000000 -0.037800
+                children [
+                  Pose {
+                    translation -0.040000 0.000000 0.033900
+                    children [
+                      Shape {
+                        appearance USE silver
+                        geometry DEF U_Dual_Lever_Carbon_1__1 Mesh {
+                          url "../meshes/U_Dual_Lever_Carbon_1__1.stl"
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis -0.000000 -1.000000 -0.000000
+                      anchor 0.000000 0.021100 -0.032000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "left_hip_roll"
+                        maxVelocity 10.0
+                        minPosition -0.523599
+                        maxPosition 0.523599
+                        maxTorque 5.0
+                      }
+                      PositionSensor {
+                        name "left_hip_roll_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.000000 0.021100 -0.032000
+                      children [
+                        Pose {
+                          translation -0.040000 -0.021100 0.065900
+                          children [
+                            Shape {
+                              appearance USE silver
+                              geometry DEF roki2_simlify_Dual_Servo_Al_022Copyv1__1__1 Mesh {
+                                url "../meshes/roki2_simlify_Dual_Servo_Al_022Copyv1__1__1.stl"
+                              }
+                            }
+                          ]
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            anchor -0.020400 -0.022100 0.000000
+                          }
+                          device [
+                            RotationalMotor {
+                              name "left_hip_pitch"
+                              maxVelocity 10.0
+                              minPosition -1.745329
+                              maxPosition 2.094395
+                              maxTorque 5.0
+                            }
+                            PositionSensor {
+                              name "left_hip_pitch_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation -0.020400 -0.022100 0.000000
+                            children [
+                              Pose {
+                                translation -0.019600 0.001000 0.065900
+                                children [
+                                  Shape {
+                                    appearance USE silver
+                                    geometry DEF Hip_Shin_Carbon_2 Mesh {
+                                      url "../meshes/Hip_Shin_Carbon_2.stl"
+                                    }
+                                  }
+                                ]
+                              }
+                              HingeJoint {
+                                jointParameters HingeJointParameters {
+                                  anchor 0.000000 0.000000 -0.082500
+                                }
+                                device [
+                                  RotationalMotor {
+                                    name "left_upper_knee"
+                                    maxVelocity 10.0
+                                    minPosition -0.087266
+                                    maxPosition 2.094395
+                                    maxTorque 5.0
+                                  }
+                                  PositionSensor {
+                                    name "left_upper_knee_sensor"
+                                  }
+                                ]
+                                endPoint Solid {
+                                  translation 0.000000 0.000000 -0.082500
+                                  children [
+                                    Pose {
+                                      translation -0.019600 0.001000 0.148400
+                                      children [
+                                        Shape {
+                                          appearance USE silver
+                                          geometry DEF Knee_1__1 Mesh {
+                                            url "../meshes/Knee_1__1.stl"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                    HingeJoint {
+                                      jointParameters HingeJointParameters {
+                                        anchor 0.000000 0.000000 -0.033000
+                                      }
+                                      device [
+                                        RotationalMotor {
+                                          name "left_knee"
+                                          maxVelocity 10.0
+                                          minPosition -0.087266
+                                          maxPosition 2.094395
+                                          maxTorque 5.0
+                                        }
+                                        PositionSensor {
+                                          name "left_knee_sensor"
+                                        }
+                                      ]
+                                      endPoint Solid {
+                                        translation 0.000000 0.000000 -0.033000
+                                        children [
+                                          Pose {
+                                            translation -0.019600 0.001000 0.181400
+                                            children [
+                                              Shape {
+                                                appearance USE silver
+                                                geometry DEF Hip_Shin_Carbon_1__1__1 Mesh {
+                                                  url "../meshes/Hip_Shin_Carbon_1__1__1.stl"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          HingeJoint {
+                                            jointParameters HingeJointParameters {
+                                              anchor 0.000000 0.000000 -0.082500
+                                            }
+                                            device [
+                                              RotationalMotor {
+                                                name "left_ankle_pitch"
+                                                maxVelocity 10.0
+                                                minPosition -0.698132
+                                                maxPosition 0.872665
+                                                maxTorque 5.0
+                                              }
+                                              PositionSensor {
+                                                name "left_ankle_pitch_sensor"
+                                              }
+                                            ]
+                                            endPoint Solid {
+                                              translation 0.000000 0.000000 -0.082500
+                                              children [
+                                                Pose {
+                                                  translation -0.019600 0.001000 0.263900
+                                                  children [
+                                                    Shape {
+                                                      appearance USE silver
+                                                      geometry DEF roki2_simlify_Dual_Servo_Al_022Copyv1_2 Mesh {
+                                                        url "../meshes/roki2_simlify_Dual_Servo_Al_022Copyv1_2.stl"
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                                HingeJoint {
+                                                  jointParameters HingeJointParameters {
+                                                    axis 0.000000 -1.000000 -0.000000
+                                                    anchor 0.019400 0.022100 0.000000
+                                                  }
+                                                  device [
+                                                    RotationalMotor {
+                                                      name "left_ankle_roll"
+                                                      maxVelocity 10.0
+                                                      minPosition -0.523599
+                                                      maxPosition 0.523599
+                                                      maxTorque 5.0
+                                                    }
+                                                    PositionSensor {
+                                                      name "left_ankle_roll_sensor"
+                                                    }
+                                                  ]
+                                                  endPoint Solid {
+                                                    translation 0.019400 0.022100 0.000000
+                                                    children [
+                                                      Pose {
+                                                        translation -0.039000 -0.021100 0.263900
+                                                        children [
+                                                          Shape {
+                                                            appearance USE silver
+                                                            geometry DEF Shoe_Flex_1__1 Mesh {
+                                                              url "../meshes/Shoe_Flex_1__1.stl"
+                                                            }
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                    name "Shoe_Flex_1__1"
+                                                    boundingObject Pose {
+                                                      translation -0.039000 -0.021100 0.263900
+                                                      children [
+                                                        USE Shoe_Flex_1__1
+                                                      ]
+                                                    }
+                                                    physics Physics {
+                                                      density -1
+                                                      mass 0.050985
+                                                      centerOfMass [ 0.010772 -0.029658 -0.020426 ]
+                                                      inertiaMatrix [
+                                                        4.700000e-05 2.100000e-05 6.600000e-05
+                                                        0.000000e+00 1.000000e-06 -0.000000e+00
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                              name "roki2_simlify_Dual_Servo_Al_022Copyv1_2"
+                                              boundingObject Pose {
+                                                translation -0.019600 0.001000 0.263900
+                                                children [
+                                                  USE roki2_simlify_Dual_Servo_Al_022Copyv1_2
+                                                ]
+                                              }
+                                              physics Physics {
+                                                density -1
+                                                mass 0.118522
+                                                centerOfMass [ 0.020357 0.015065 0.011268 ]
+                                                inertiaMatrix [
+                                                  8.300000e-05 3.300000e-05 7.200000e-05
+                                                  1.000000e-06 0.000000e+00 -7.000000e-06
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        ]
+                                        name "Hip_Shin_Carbon_1__1__1"
+                                        boundingObject Pose {
+                                          translation -0.019600 0.001000 0.181400
+                                          children [
+                                            USE Hip_Shin_Carbon_1__1__1
+                                          ]
+                                        }
+                                        physics Physics {
+                                          density -1
+                                          mass 0.022625
+                                          centerOfMass [ 0.020000 -0.008104 -0.037926 ]
+                                          inertiaMatrix [
+                                            1.300000e-05 1.800000e-05 1.200000e-05
+                                            -0.000000e+00 -0.000000e+00 1.000000e-06
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                  name "Knee_1__1"
+                                  boundingObject Pose {
+                                    translation -0.019600 0.001000 0.148400
+                                    children [
+                                      USE Knee_1__1
+                                    ]
+                                  }
+                                  physics Physics {
+                                    density -1
+                                    mass 0.109303
+                                    centerOfMass [ 0.018611 -0.009330 -0.016567 ]
+                                    inertiaMatrix [
+                                      5.300000e-05 5.000000e-05 3.300000e-05
+                                      0.000000e+00 -0.000000e+00 -0.000000e+00
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                            name "Hip_Shin_Carbon_2"
+                            boundingObject Pose {
+                              translation -0.019600 0.001000 0.065900
+                              children [
+                                USE Hip_Shin_Carbon_2
+                              ]
+                            }
+                            physics Physics {
+                              density -1
+                              mass 0.022625
+                              centerOfMass [ 0.020000 -0.008104 -0.044574 ]
+                              inertiaMatrix [
+                                1.300000e-05 1.800000e-05 1.200000e-05
+                                0.000000e+00 0.000000e+00 -1.000000e-06
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "roki2_simlify_Dual_Servo_Al_022Copyv1__1__1"
+                      boundingObject Pose {
+                        translation -0.040000 -0.021100 0.065900
+                        children [
+                          USE roki2_simlify_Dual_Servo_Al_022Copyv1__1__1
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.118522
+                        centerOfMass [ -0.000957 -0.007035 -0.011268 ]
+                        inertiaMatrix [
+                          8.300000e-05 3.300000e-05 7.200000e-05
+                          -1.000000e-06 0.000000e+00 7.000000e-06
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "U_Dual_Lever_Carbon_1__1"
+                boundingObject Pose {
+                  translation -0.040000 0.000000 0.033900
+                  children [
+                    USE U_Dual_Lever_Carbon_1__1
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.009545
+                  centerOfMass [ 0.000000 -0.004598 -0.010314 ]
+                  inertiaMatrix [
+                    5.000000e-06 1.000000e-06 4.000000e-06
+                    -0.000000e+00 -0.000000e+00 -0.000000e+00
+                  ]
+                }
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis -0.000000 -0.000000 -1.000000
+                anchor -0.040000 -0.000000 -0.037800
+              }
+              device [
+                RotationalMotor {
+                  name "right_hip_yaw"
+                  maxVelocity 10.0
+                  minPosition -0.523599
+                  maxPosition 0.523599
+                  maxTorque 5.0
+                }
+                PositionSensor {
+                  name "right_hip_yaw_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.040000 -0.000000 -0.037800
+                children [
+                  Pose {
+                    translation 0.040000 0.000000 0.033900
+                    children [
+                      Shape {
+                        appearance USE silver
+                        geometry DEF U_Dual_Lever_Carbon_2 Mesh {
+                          url "../meshes/U_Dual_Lever_Carbon_2.stl"
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis -0.000000 -1.000000 -0.000000
+                      anchor 0.000000 0.021100 -0.032000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "right_hip_roll"
+                        maxVelocity 10.0
+                        minPosition -0.523599
+                        maxPosition 0.523599
+                        maxTorque 5.0
+                      }
+                      PositionSensor {
+                        name "right_hip_roll_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.000000 0.021100 -0.032000
+                      children [
+                        Pose {
+                          translation 0.040000 -0.021100 0.065900
+                          children [
+                            Shape {
+                              appearance USE silver
+                              geometry DEF Dual_Servo_Al_022__1__1 Mesh {
+                                url "../meshes/Dual_Servo_Al_022__1__1.stl"
+                              }
+                            }
+                          ]
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            anchor 0.020400 -0.022100 0.000000
+                          }
+                          device [
+                            RotationalMotor {
+                              name "right_hip_pitch"
+                              maxVelocity 10.0
+                              minPosition -1.745329
+                              maxPosition 2.094395
+                              maxTorque 5.0
+                            }
+                            PositionSensor {
+                              name "right_hip_pitch_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.020400 -0.022100 0.000000
+                            children [
+                              Pose {
+                                translation 0.019600 0.001000 0.065900
+                                children [
+                                  Shape {
+                                    appearance USE silver
+                                    geometry DEF Hip_Shin_Carbon_1__1 Mesh {
+                                      url "../meshes/Hip_Shin_Carbon_1__1.stl"
+                                    }
+                                  }
+                                ]
+                              }
+                              HingeJoint {
+                                jointParameters HingeJointParameters {
+                                  anchor -0.040000 0.000000 -0.082500
+                                }
+                                device [
+                                  RotationalMotor {
+                                    name "right_upper_knee"
+                                    maxVelocity 10.0
+                                    minPosition -0.087266
+                                    maxPosition 2.094395
+                                    maxTorque 5.0
+                                  }
+                                  PositionSensor {
+                                    name "right_upper_knee_sensor"
+                                  }
+                                ]
+                                endPoint Solid {
+                                  translation -0.040000 0.000000 -0.082500
+                                  children [
+                                    Pose {
+                                      translation 0.059600 0.001000 0.148400
+                                      children [
+                                        Shape {
+                                          appearance USE silver
+                                          geometry DEF Knee_1__1__1 Mesh {
+                                            url "../meshes/Knee_1__1__1.stl"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                    HingeJoint {
+                                      jointParameters HingeJointParameters {
+                                        anchor 0.039800 0.000000 -0.033000
+                                      }
+                                      device [
+                                        RotationalMotor {
+                                          name "right_knee"
+                                          maxVelocity 10.0
+                                          minPosition -0.087266
+                                          maxPosition 2.094395
+                                          maxTorque 5.0
+                                        }
+                                        PositionSensor {
+                                          name "right_knee_sensor"
+                                        }
+                                      ]
+                                      endPoint Solid {
+                                        translation 0.039800 0.000000 -0.033000
+                                        children [
+                                          Pose {
+                                            translation 0.019800 0.001000 0.181400
+                                            children [
+                                              Shape {
+                                                appearance USE silver
+                                                geometry DEF Hip_Shin_Carbon_2__1 Mesh {
+                                                  url "../meshes/Hip_Shin_Carbon_2__1.stl"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          HingeJoint {
+                                            jointParameters HingeJointParameters {
+                                              anchor -0.040000 0.000000 -0.082500
+                                            }
+                                            device [
+                                              RotationalMotor {
+                                                name "right_ankle_pitch"
+                                                maxVelocity 10.0
+                                                minPosition -0.785398
+                                                maxPosition 1.22173
+                                                maxTorque 5.0
+                                              }
+                                              PositionSensor {
+                                                name "right_ankle_pitch_sensor"
+                                              }
+                                            ]
+                                            endPoint Solid {
+                                              translation -0.040000 0.000000 -0.082500
+                                              children [
+                                                Pose {
+                                                  translation 0.059800 0.001000 0.263900
+                                                  children [
+                                                    Shape {
+                                                      appearance USE silver
+                                                      geometry DEF Dual_Servo_Al_022_3 Mesh {
+                                                        url "../meshes/Dual_Servo_Al_022_3.stl"
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                                HingeJoint {
+                                                  jointParameters HingeJointParameters {
+                                                    axis -0.000000 -1.000000 -0.000000
+                                                    anchor 0.020406 -0.026478 0.000149
+                                                  }
+                                                  device [
+                                                    RotationalMotor {
+                                                      name "right_ankle_roll"
+                                                      maxVelocity 10.0
+                                                      minPosition -0.523599
+                                                      maxPosition 0.523599
+                                                      maxTorque 5.0
+                                                    }
+                                                    PositionSensor {
+                                                      name "right_ankle_roll_sensor"
+                                                    }
+                                                  ]
+                                                  endPoint Solid {
+                                                    translation 0.020406 -0.026478 0.000149
+                                                    children [
+                                                      Pose {
+                                                        translation 0.039394 0.027478 0.263751
+                                                        children [
+                                                          Shape {
+                                                            appearance USE silver
+                                                            geometry DEF Shoe_Flex_1 Mesh {
+                                                              url "../meshes/Shoe_Flex_1.stl"
+                                                            }
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                    name "Shoe_Flex_1"
+                                                    boundingObject Pose {
+                                                      translation 0.039394 0.027478 0.263751
+                                                      children [
+                                                        USE Shoe_Flex_1
+                                                      ]
+                                                    }
+                                                    physics Physics {
+                                                      density -1
+                                                      mass 0.050985
+                                                      centerOfMass [ -0.010772 0.018942 -0.020426 ]
+                                                      inertiaMatrix [
+                                                        4.700000e-05 2.100000e-05 6.600000e-05
+                                                        -0.000000e+00 -1.000000e-06 -0.000000e+00
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                              name "Dual_Servo_Al_022_3"
+                                              boundingObject Pose {
+                                                translation 0.059800 0.001000 0.263900
+                                                children [
+                                                  USE Dual_Servo_Al_022_3
+                                                ]
+                                              }
+                                              physics Physics {
+                                                density -1
+                                                mass 0.118522
+                                                centerOfMass [ 0.019443 0.015066 0.011275 ]
+                                                inertiaMatrix [
+                                                  8.300000e-05 3.300000e-05 7.200000e-05
+                                                  -1.000000e-06 -0.000000e+00 -7.000000e-06
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        ]
+                                        name "Hip_Shin_Carbon_2__1"
+                                        boundingObject Pose {
+                                          translation 0.019800 0.001000 0.181400
+                                          children [
+                                            USE Hip_Shin_Carbon_2__1
+                                          ]
+                                        }
+                                        physics Physics {
+                                          density -1
+                                          mass 0.022625
+                                          centerOfMass [ -0.020000 -0.008104 -0.037926 ]
+                                          inertiaMatrix [
+                                            1.300000e-05 1.800000e-05 1.200000e-05
+                                            -0.000000e+00 -0.000000e+00 1.000000e-06
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                  name "Knee_1__1__1"
+                                  boundingObject Pose {
+                                    translation 0.059600 0.001000 0.148400
+                                    children [
+                                      USE Knee_1__1__1
+                                    ]
+                                  }
+                                  physics Physics {
+                                    density -1
+                                    mass 0.109303
+                                    centerOfMass [ 0.021189 -0.009330 -0.016567 ]
+                                    inertiaMatrix [
+                                      5.300000e-05 5.000000e-05 3.300000e-05
+                                      -0.000000e+00 0.000000e+00 -0.000000e+00
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                            name "Hip_Shin_Carbon_1__1"
+                            boundingObject Pose {
+                              translation 0.019600 0.001000 0.065900
+                              children [
+                                USE Hip_Shin_Carbon_1__1
+                              ]
+                            }
+                            physics Physics {
+                              density -1
+                              mass 0.022625
+                              centerOfMass [ -0.020000 -0.008104 -0.044574 ]
+                              inertiaMatrix [
+                                1.300000e-05 1.800000e-05 1.200000e-05
+                                0.000000e+00 -0.000000e+00 -1.000000e-06
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "Dual_Servo_Al_022__1__1"
+                      boundingObject Pose {
+                        translation 0.040000 -0.021100 0.065900
+                        children [
+                          USE Dual_Servo_Al_022__1__1
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.118522
+                        centerOfMass [ 0.000957 -0.007034 -0.011275 ]
+                        inertiaMatrix [
+                          8.300000e-05 3.300000e-05 7.200000e-05
+                          1.000000e-06 -0.000000e+00 7.000000e-06
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "U_Dual_Lever_Carbon_2"
+                boundingObject Pose {
+                  translation 0.040000 0.000000 0.033900
+                  children [
+                    USE U_Dual_Lever_Carbon_2
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.009545
+                  centerOfMass [ 0.000000 -0.004598 -0.010314 ]
+                  inertiaMatrix [
+                    5.000000e-06 1.000000e-06 4.000000e-06
+                    -0.000000e+00 -0.000000e+00 -0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "Waist_1"
+          boundingObject Pose {
+            translation 0.000000 -0.000000 -0.003900
+            children [
+              USE Waist_1
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.157611
+            centerOfMass [ 0.000023 0.010044 -0.019581 ]
+            inertiaMatrix [
+              4.500000e-05 1.890000e-04 1.990000e-04
+              -0.000000e+00 0.000000e+00 -1.000000e-06
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 -0.000000 1.000000
+          anchor 0.000025 -0.011152 0.074780
+        }
+        device [
+          RotationalMotor {
+            name "head_yaw"
+            maxVelocity 10.0
+            minPosition -0.785398
+            maxPosition 0.785398
+            maxTorque 5.0
+          }
+          PositionSensor {
+            name "head_yaw_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.000025 -0.011152 0.074780
+          children [
+            Pose {
+              translation -0.000025 0.011152 -0.074780
+              children [
+                Shape {
+                  appearance USE silver
+                  geometry DEF Robot_Football_Player_SKS-2501_Neck_Carbonv2_1 Mesh {
+                    url "../meshes/Robot_Football_Player_SKS-2501_Neck_Carbonv2_1.stl"
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis -1.000000 -0.000000 0.000000
+                anchor -0.020000 0.000000 0.030000
+              }
+              device [
+                RotationalMotor {
+                  name "head_pitch"
+                  maxVelocity 10.0
+                  minPosition -1.919862
+                  maxPosition 0.698132
+                  maxTorque 5.0
+                }
+                PositionSensor {
+                  name "head_pitch_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.020000 0.000000 0.030000
+                children [
+                  Pose {
+                    translation 0.019975 0.011152 -0.104780
+                    children [
+                      Shape {
+                        appearance USE silver
+                        geometry DEF Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1 Mesh {
+                          url "../meshes/Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1.stl"
+                        }
+                      }
+                    ]
+                  }
+                ]
+                name "Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1"
+                boundingObject Pose {
+                  translation 0.019975 0.011152 -0.104780
+                  children [
+                    USE Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.264163
+                  centerOfMass [ 0.019224 0.015494 0.034249 ]
+                  inertiaMatrix [
+                    2.530000e-04 2.290000e-04 2.210000e-04
+                    0.000000e+00 -3.000000e-06 -3.300000e-05
+                  ]
+                }
+              }
+            }
+          ]
+          name "Robot_Football_Player_SKS-2501_Neck_Carbonv2_1"
+          boundingObject Pose {
+            translation -0.000025 0.011152 -0.074780
+            children [
+              USE Robot_Football_Player_SKS-2501_Neck_Carbonv2_1
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.006890
+            centerOfMass [ 0.000000 0.000403 0.008893 ]
+            inertiaMatrix [
+              1.000000e-06 3.000000e-06 3.000000e-06
+              0.000000e+00 -0.000000e+00 -0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          anchor 0.055900 -0.011210 0.049400
+        }
+        device [
+          RotationalMotor {
+            name "left_shoulder_pitch"
+            maxVelocity 10.0
+            minPosition -3.141593
+            maxPosition 3.141593
+            maxTorque 5.0
+          }
+          PositionSensor {
+            name "left_shoulder_pitch_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.055900 -0.011210 0.049400
+          children [
+            Pose {
+              translation -0.055900 0.011210 -0.049400
+              children [
+                Shape {
+                  appearance USE silver
+                  geometry DEF U_Lever_Carbon_2__1 Mesh {
+                    url "../meshes/U_Lever_Carbon_2__1.stl"
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis -0.000000 -1.000000 0.000000
+                anchor 0.024000 -0.020000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "left_shoulder_roll"
+                  maxVelocity 10.0
+                  maxPosition 2.96706
+                  maxTorque 5.0
+                }
+                PositionSensor {
+                  name "left_shoulder_roll_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.024000 -0.020000 0.000000
+                children [
+                  Pose {
+                    translation -0.079900 0.031210 -0.049400
+                    children [
+                      Shape {
+                        appearance USE silver
+                        geometry DEF roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1 Mesh {
+                          url "../meshes/roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1.stl"
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.173648 0.000000 -0.984808
+                      anchor 0.012490 0.022575 -0.070832
+                    }
+                    device [
+                      RotationalMotor {
+                        name "left_elbow_yaw"
+                        maxVelocity 10.0
+                        minPosition -1.570796
+                        maxPosition 1.570796
+                        maxTorque 5.0
+                      }
+                      PositionSensor {
+                        name "left_elbow_yaw_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.012490 0.022575 -0.070832
+                      children [
+                        Pose {
+                          translation -0.092390 0.008635 0.021432
+                          children [
+                            Shape {
+                              appearance USE silver
+                              geometry DEF Elbow_Bracket_01_1__1 Mesh {
+                                url "../meshes/Elbow_Bracket_01_1__1.stl"
+                              }
+                            }
+                          ]
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            axis 0.984808 0.000000 0.173648
+                            anchor -0.014010 -0.007900 -0.020748
+                          }
+                          device [
+                            RotationalMotor {
+                              name "left_elbow"
+                              maxVelocity 10.0
+                              minPosition -1.919862
+                              maxPosition 0.174533
+                              maxTorque 5.0
+                            }
+                            PositionSensor {
+                              name "left_elbow_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation -0.014010 -0.007900 -0.020748
+                            children [
+                              Pose {
+                                translation -0.078380 0.016535 0.042180
+                                children [
+                                  Shape {
+                                    appearance USE silver
+                                    geometry DEF Hand_Football_Player_05_1 Mesh {
+                                      url "../meshes/Hand_Football_Player_05_1.stl"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                            name "Hand_Football_Player_05_1"
+                            boundingObject Pose {
+                              translation -0.078380 0.016535 0.042180
+                              children [
+                                USE Hand_Football_Player_05_1
+                              ]
+                            }
+                            physics Physics {
+                              density -1
+                              mass 0.048927
+                              centerOfMass [ 0.015641 0.000000 -0.067392 ]
+                              inertiaMatrix [
+                                8.200000e-05 8.400000e-05 1.100000e-05
+                                -0.000000e+00 -1.200000e-05 -0.000000e+00
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "Elbow_Bracket_01_1__1"
+                      boundingObject Pose {
+                        translation -0.092390 0.008635 0.021432
+                        children [
+                          USE Elbow_Bracket_01_1__1
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.055531
+                        centerOfMass [ 0.004047 0.001017 -0.016723 ]
+                        inertiaMatrix [
+                          1.200000e-05 1.100000e-05 1.600000e-05
+                          -0.000000e+00 -1.000000e-06 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1"
+                boundingObject Pose {
+                  translation -0.079900 0.031210 -0.049400
+                  children [
+                    USE roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.129837
+                  centerOfMass [ 0.005886 0.028181 -0.033376 ]
+                  inertiaMatrix [
+                    9.400000e-05 7.700000e-05 3.400000e-05
+                    -3.000000e-06 1.100000e-05 1.900000e-05
+                  ]
+                }
+              }
+            }
+          ]
+          name "U_Lever_Carbon_2__1"
+          boundingObject Pose {
+            translation -0.055900 0.011210 -0.049400
+            children [
+              USE U_Lever_Carbon_2__1
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.007572
+            centerOfMass [ 0.007714 0.000000 -0.000000 ]
+            inertiaMatrix [
+              3.000000e-06 1.000000e-06 3.000000e-06
+              0.000000e+00 -0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -1.000000 -0.000000 0.000000
+          anchor -0.055900 -0.011210 0.049400
+        }
+        device [
+          RotationalMotor {
+            name "right_shoulder_pitch"
+            maxVelocity 10.0
+            minPosition -3.141593
+            maxPosition 3.141593
+            maxTorque 5.0
+          }
+          PositionSensor {
+            name "right_shoulder_pitch_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.055900 -0.011210 0.049400
+          children [
+            Pose {
+              translation 0.055900 0.011210 -0.049400
+              children [
+                Shape {
+                  appearance USE silver
+                  geometry DEF U_Lever_Carbon_1__1 Mesh {
+                    url "../meshes/U_Lever_Carbon_1__1.stl"
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis -0.000000 -1.000000 -0.000000
+                anchor -0.024000 -0.020000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "right_shoulder_roll"
+                  maxVelocity 10.0
+                  minPosition -2.96706
+                  maxTorque 5.0
+                }
+                PositionSensor {
+                  name "right_shoulder_roll_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.024000 -0.020000 0.000000
+                children [
+                  Pose {
+                    translation 0.079900 0.031210 -0.049400
+                    children [
+                      Shape {
+                        appearance USE silver
+                        geometry DEF roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1 Mesh {
+                          url "../meshes/roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1.stl"
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis -0.173648 -0.000000 -0.984808
+                      anchor -0.012490 0.022575 -0.070832
+                    }
+                    device [
+                      RotationalMotor {
+                        name "right_elbow_yaw"
+                        maxVelocity 10.0
+                        minPosition -1.570796
+                        maxPosition 1.570796
+                        maxTorque 5.0
+                      }
+                      PositionSensor {
+                        name "right_elbow_yaw_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation -0.012490 0.022575 -0.070832
+                      children [
+                        Pose {
+                          translation 0.092390 0.008635 0.021432
+                          children [
+                            Shape {
+                              appearance USE silver
+                              geometry DEF Elbow_Bracket_01_1 Mesh {
+                                url "../meshes/Elbow_Bracket_01_1.stl"
+                              }
+                            }
+                          ]
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            axis 0.984808 0.000000 -0.173648
+                            anchor 0.014010 -0.007900 -0.020748
+                          }
+                          device [
+                            RotationalMotor {
+                              name "right_elbow"
+                              maxVelocity 10.0
+                              minPosition -1.919862
+                              maxPosition 0.174533
+                              maxTorque 5.0
+                            }
+                            PositionSensor {
+                              name "right_elbow_sensor"
+                            }
+                          ]
+                          endPoint Solid {
+                            translation 0.014010 -0.007900 -0.020748
+                            children [
+                              Pose {
+                                translation 0.078380 0.016535 0.042180
+                                children [
+                                  Shape {
+                                    appearance USE silver
+                                    geometry DEF Hand_Football_Player_05__1__1 Mesh {
+                                      url "../meshes/Hand_Football_Player_05__1__1.stl"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                            name "Hand_Football_Player_05__1__1"
+                            boundingObject Pose {
+                              translation 0.078380 0.016535 0.042180
+                              children [
+                                USE Hand_Football_Player_05__1__1
+                              ]
+                            }
+                            physics Physics {
+                              density -1
+                              mass 0.048927
+                              centerOfMass [ -0.015641 -0.000000 -0.067392 ]
+                              inertiaMatrix [
+                                8.200000e-05 8.400000e-05 1.100000e-05
+                                -0.000000e+00 1.200000e-05 0.000000e+00
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                      name "Elbow_Bracket_01_1"
+                      boundingObject Pose {
+                        translation 0.092390 0.008635 0.021432
+                        children [
+                          USE Elbow_Bracket_01_1
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.055531
+                        centerOfMass [ -0.004047 0.001017 -0.016723 ]
+                        inertiaMatrix [
+                          1.200000e-05 1.100000e-05 1.600000e-05
+                          0.000000e+00 1.000000e-06 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1"
+                boundingObject Pose {
+                  translation 0.079900 0.031210 -0.049400
+                  children [
+                    USE roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.129837
+                  centerOfMass [ -0.005884 0.028181 -0.033376 ]
+                  inertiaMatrix [
+                    9.400000e-05 7.700000e-05 3.400000e-05
+                    3.000000e-06 -1.100000e-05 1.900000e-05
+                  ]
+                }
+              }
+            }
+          ]
+          name "U_Lever_Carbon_1__1"
+          boundingObject Pose {
+            translation 0.055900 0.011210 -0.049400
+            children [
+              USE U_Lever_Carbon_1__1
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.007572
+            centerOfMass [ -0.007714 0.000000 -0.000000 ]
+            inertiaMatrix [
+              3.000000e-06 1.000000e-06 3.000000e-06
+              0.000000e+00 0.000000e+00 -0.000000e+00
+            ]
+          }
+        }
+      }
+    ]
+    name IS name
+    boundingObject USE base_link
+    physics Physics {
+      density -1
+      mass 0.697847
+      centerOfMass [ 0.000029 0.031363 0.049233 ]
+      inertiaMatrix [
+        8.360000e-04 6.550000e-04 1.221000e-03
+        -1.000000e-06 -0.000000e+00 -4.800000e-05
+      ]
+    }
+  }
+}

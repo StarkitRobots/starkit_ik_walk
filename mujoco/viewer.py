@@ -70,7 +70,7 @@ params.distKneeToAnkle = 0.082# 0.105
 params.distAnkleToGround = 0.024# 0.032
 params.distFeetLateral = 0.079
 params.freq = 2.025
-params.enabledGain = 0.0
+params.enabledGain = 1.0
 params.supportPhaseRatio = 0.0
 params.footYOffset = 0.025
 params.stepGain = 0.0
@@ -158,6 +158,24 @@ ctrl_naming = {
               "left_knee" : 22,
               "left_ankle_pitch" : 23,
               "left_ankle_roll" : 24 }
+
+dof_names = {
+    'left_elbow' : 6,
+    'right_elbow' : 2,
+    'left_hip_yaw' : 18, 
+    'left_hip_roll' : 19, 
+    'left_hip_pitch' : 20,
+    'left_upper_knee' : 21, 
+    'left_knee' : 22,
+    'left_ankle_pitch' : 23, 
+    'left_ankle_roll' : 24, 
+    'right_hip_yaw' : 11, 
+    'right_hip_roll' : 12, 
+    'right_hip_pitch' : 13, 
+    'right_upper_knee' : 14, 
+    'right_knee' : 15, 
+    'right_ankle_pitch' : 16, 
+    'right_ankle_roll' : 17}
 
 def update_value(param_name, value):
     global params
@@ -381,7 +399,7 @@ def _physics_loop(simulate: _Simulate, loader: Optional[_InternalLoaderType]):
   d: mujoco.MjData = None
   ctrl_noise = np.array([])
   reload = True
-
+  global phase
   # CPU-sim synchronization point.
   synccpu = 0.0
   syncsim = 0.0
@@ -425,6 +443,7 @@ def _physics_loop(simulate: _Simulate, loader: Optional[_InternalLoaderType]):
           # print(*m.actuator_acc0)
           # num = d.MjNum
           print(d.ctrl)
+          print(f"ELAPSEDSIM {elapsedsim}")
           # for elem in d.ctrl:
 
           print("-------------------------------")
@@ -452,6 +471,22 @@ def _physics_loop(simulate: _Simulate, loader: Optional[_InternalLoaderType]):
                            elapsedsim) > MAX_SYNC_MISALIGN
 
           # Out-of-sync (for any reason): reset sync times, step.
+          timestep = elapsedsim
+          def send_command(command: sk.IKWalkOutputs):
+            for name in dof_names:
+              if "elbow" in name:
+                  # motor.setPosition(-2.5)
+                  d.ctrl[dof_names[name]] = 0
+              elif "upper_knee" in name:
+                  d.ctrl[dof_names[name]] = 0
+              else:
+                  d.ctrl[dof_names[name]] = getattr(command, name)
+          outputs = sk.IKWalkOutputs()
+          # if sk.IKWalk.walk(params, timestep / 1000.0, phase, outputs):
+          if sk.IKWalk.walk(params, 0.002, phase, outputs):
+            send_command(outputs)
+            # global phase
+            phase = outputs.phase
           if (elapsedsim < 0 or elapsedcpu < 0 or synccpu == 0 or misaligned or
               simulate.speed_changed):
             # Re-sync.

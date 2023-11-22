@@ -1,0 +1,159 @@
+<mujoco model="roki">
+  <compiler angle="radian" autolimits="true"/>
+  <asset>
+    <mesh name="col_base_link" file="col_base_link.stl"/>
+    <mesh name="col_Waist_1" file="col_Waist_1.stl"/>
+    <mesh name="col_U_Dual_Lever_Carbon_1__1" file="col_U_Dual_Lever_Carbon_1__1.stl"/>
+    <mesh name="col_U_Dual_Lever_Carbon_2" file="col_U_Dual_Lever_Carbon_2.stl"/>
+    <mesh name="col_Robot_Football_Player_SKS-2501_Neck_Carbonv2_1" file="col_Robot_Football_Player_SKS-2501_Neck_Carbonv2_1.stl"/>
+    <mesh name="col_Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1" file="col_Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1.stl"/>
+    <mesh name="col_roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1" file="col_roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1.stl"/>
+    <mesh name="col_roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1" file="col_roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1.stl"/>
+    <mesh name="col_Elbow_Bracket_01_1" file="col_Elbow_Bracket_01_1.stl"/>
+    <mesh name="col_Elbow_Bracket_01_1__1" file="col_Elbow_Bracket_01_1__1.stl"/>
+    <mesh name="col_Hand_Football_Player_05_1" file="col_Hand_Football_Player_05_1.stl"/>
+    <mesh name="col_Hand_Football_Player_05__1__1" file="col_Hand_Football_Player_05__1__1.stl"/>
+    <mesh name="col_U_Lever_Carbon_2__1" file="col_U_Lever_Carbon_2__1.stl"/>
+    <mesh name="col_U_Lever_Carbon_1__1" file="col_U_Lever_Carbon_1__1.stl"/>
+    <mesh name="col_Knee_1__1" file="col_Knee_1__1.stl"/>
+    <mesh name="col_Hip_Shin_Carbon_1__1__1" file="col_Hip_Shin_Carbon_1__1__1.stl"/>
+    <mesh name="col_Knee_1__1__1" file="col_Knee_1__1__1.stl"/>
+    <mesh name="col_Hip_Shin_Carbon_2__1" file="col_Hip_Shin_Carbon_2__1.stl"/>
+    <mesh name="col_Dual_Servo_Al_022_3" file="col_Dual_Servo_Al_022_3.stl"/>
+    <mesh name="col_Shoe_Flex_1__1" file="col_Shoe_Flex_1__1.stl"/>
+    <mesh name="col_roki2_simlify_Dual_Servo_Al_022Copyv1_2" file="col_roki2_simlify_Dual_Servo_Al_022Copyv1_2.stl"/>
+    <mesh name="col_Shoe_Flex_1" file="col_Shoe_Flex_1.stl"/>
+    <mesh name="col_Dual_Servo_Al_022__1__1" file="col_Dual_Servo_Al_022__1__1.stl"/>
+    <mesh name="col_roki2_simlify_Dual_Servo_Al_022Copyv1__1__1" file="col_roki2_simlify_Dual_Servo_Al_022Copyv1__1__1.stl"/>
+    <mesh name="col_Hip_Shin_Carbon_2" file="col_Hip_Shin_Carbon_2.stl"/>
+    <mesh name="col_Hip_Shin_Carbon_1__1" file="col_Hip_Shin_Carbon_1__1.stl"/>
+  </asset>
+  <worldbody>
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_base_link"/>
+    <body name="Waist_1" pos="0 0 0.0039">
+      <inertial pos="2.30895e-05 0.0100438 -0.0195807" quat="-0.0348808 0.706246 -0.0348808 0.706246" mass="0.157611" diaginertia="0.000199099 0.000188901 4.5e-05"/>
+      <joint name="waist_yaw" pos="0 0 0" axis="0 0 -1" range="-0.523599 0.523599"/>
+      <geom pos="0 0 -0.0039" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Waist_1"/>
+      <body name="U_Dual_Lever_Carbon_1__1" pos="0.04 0 -0.0378">
+        <inertial pos="0 -0.00459794 -0.0103142" quat="0.707107 0.707107 0 0" mass="0.0095452" diaginertia="3.33333e-06 3.33333e-06 3.33333e-06"/>
+        <joint name="left_hip_yaw" pos="0 0 0" axis="0 0 -1" range="-0.523599 0.523599"/>
+        <geom pos="-0.04 0 0.0339" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_U_Dual_Lever_Carbon_1__1"/>
+        <body name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1" pos="0 0.0211 -0.032">
+          <inertial pos="-0.000957429 -0.00703541 -0.0112681" quat="0.76519 0.643674 -0.00173025 -0.0128775" mass="0.118522" diaginertia="8.30219e-05 7.32154e-05 3.17627e-05"/>
+          <joint name="left_hip_roll" pos="0 0 0" axis="0 1 0" range="-0.523599 0.523599"/>
+          <geom pos="-0.04 -0.0211 0.0659" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_roki2_simlify_Dual_Servo_Al_022Copyv1__1__1"/>
+          <body name="Hip_Shin_Carbon_2" pos="-0.0204 -0.0221 0">
+            <inertial pos="0.02 -0.00810351 -0.0445739" quat="0.70482 -0.0568167 0.0568167 0.70482" mass="0.0226254" diaginertia="1.81623e-05 1.3e-05 1.18377e-05"/>
+            <joint name="left_hip_pitch" pos="0 0 0" axis="1 0 0" range="-1.74533 2.0944"/>
+            <geom pos="-0.0196 0.001 0.0659" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Hip_Shin_Carbon_2"/>
+            <body name="Knee_1__1" pos="0 0 -0.0825">
+              <inertial pos="0.0186109 -0.00933031 -0.0165667" mass="0.109303" diaginertia="5.3e-05 5e-05 3.3e-05"/>
+              <joint name="left_upper_knee" pos="0 0 0" axis="1 0 0" range="-0.087266 2.0944"/>
+              <geom pos="-0.0196 0.001 0.1484" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Knee_1__1"/>
+              <body name="Hip_Shin_Carbon_1__1__1" pos="0 0 -0.033">
+                <inertial pos="0.02 -0.00810351 -0.0379261" quat="0.70482 0.0568167 -0.0568167 0.70482" mass="0.0226254" diaginertia="1.81623e-05 1.3e-05 1.18377e-05"/>
+                <joint name="left_bottom_knee" pos="0 0 0" axis="1 0 0" range="-0.087266 2.0944"/>
+                <geom pos="-0.0196 0.001 0.1814" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Hip_Shin_Carbon_1__1__1"/>
+                <body name="roki2_simlify_Dual_Servo_Al_022Copyv1_2" pos="0 0 -0.0825">
+                  <inertial pos="0.0203574 0.0150646 0.0112681" quat="0.643674 0.76519 0.0128775 0.00173025" mass="0.118522" diaginertia="8.30219e-05 7.32154e-05 3.17627e-05"/>
+                  <joint name="left_ankle_pitch" pos="0 0 0" axis="1 0 0" range="-0.698132 0.872665"/>
+                  <geom pos="-0.0196 0.001 0.2639" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_roki2_simlify_Dual_Servo_Al_022Copyv1_2"/>
+                  <body name="Shoe_Flex_1__1" pos="0.0194 0.0221 0">
+                    <inertial pos="0.010772 -0.0296579 -0.0204262" quat="0.512936 0.512936 -0.48672 0.48672" mass="0.0509852" diaginertia="6.60525e-05 4.69475e-05 2.1e-05"/>
+                    <joint name="left_ankle_roll" pos="0 0 0" axis="0 1 0" range="-0.523599 0.523599"/>
+                    <geom pos="-0.039 -0.0211 0.2639" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Shoe_Flex_1__1"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="U_Dual_Lever_Carbon_2" pos="-0.04 0 -0.0378">
+        <inertial pos="0 -0.00459794 -0.0103142" quat="0.707107 0.707107 0 0" mass="0.0095452" diaginertia="3.33333e-06 3.33333e-06 3.33333e-06"/>
+        <joint name="right_hip_yaw" pos="0 0 0" axis="0 0 -1" range="-0.523599 0.523599"/>
+        <geom pos="0.04 0 0.0339" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_U_Dual_Lever_Carbon_2"/>
+        <body name="Dual_Servo_Al_022__1__1" pos="0 0.0211 -0.032">
+          <inertial pos="0.00095716 -0.00703443 -0.0112748" quat="0.76519 0.643674 0.00173025 0.0128775" mass="0.118522" diaginertia="8.30219e-05 7.32154e-05 3.17627e-05"/>
+          <joint name="right_hip_roll" pos="0 0 0" axis="0 1 0" range="-0.523599 0.523599"/>
+          <geom pos="0.04 -0.0211 0.0659" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Dual_Servo_Al_022__1__1"/>
+          <body name="Hip_Shin_Carbon_1__1" pos="0.0204 -0.0221 0">
+            <inertial pos="-0.02 -0.00810351 -0.0445739" quat="0.70482 -0.0568167 0.0568167 0.70482" mass="0.0226254" diaginertia="1.81623e-05 1.3e-05 1.18377e-05"/>
+            <joint name="right_hip_pitch" pos="0 0 0" axis="1 0 0" range="-1.74533 2.0944"/>
+            <geom pos="0.0196 0.001 0.0659" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Hip_Shin_Carbon_1__1"/>
+            <body name="Knee_1__1__1" pos="-0.04 0 -0.0825">
+              <inertial pos="0.0211891 -0.00933031 -0.0165667" mass="0.109303" diaginertia="5.3e-05 5e-05 3.3e-05"/>
+              <joint name="right_upper_knee" pos="0 0 0" axis="1 0 0" range="-0.087266 2.0944"/>
+              <geom pos="0.0596 0.001 0.1484" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Knee_1__1__1"/>
+              <body name="Hip_Shin_Carbon_2__1" pos="0.0398 0 -0.033">
+                <inertial pos="-0.02 -0.00810351 -0.0379261" quat="0.70482 0.0568167 -0.0568167 0.70482" mass="0.0226254" diaginertia="1.81623e-05 1.3e-05 1.18377e-05"/>
+                <joint name="right_bottom_knee" pos="0 0 0" axis="1 0 0" range="-0.087266 2.0944"/>
+                <geom pos="0.0198 0.001 0.1814" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Hip_Shin_Carbon_2__1"/>
+                <body name="Dual_Servo_Al_022_3" pos="-0.04 0 -0.0825">
+                  <inertial pos="0.0194428 0.0150656 0.0112748" quat="0.643674 0.76519 -0.0128775 -0.00173025" mass="0.118522" diaginertia="8.30219e-05 7.32154e-05 3.17627e-05"/>
+                  <joint name="right_ankle_pitch" pos="0 0 0" axis="1 0 0" range="-0.785398 1.22173"/>
+                  <geom pos="0.0598 0.001 0.2639" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Dual_Servo_Al_022_3"/>
+                  <body name="Shoe_Flex_1" pos="0.020406 -0.026478 0.000149">
+                    <inertial pos="-0.010772 0.0189418 -0.0204263" quat="0.48672 0.48672 -0.512936 0.512936" mass="0.0509853" diaginertia="6.60525e-05 4.69475e-05 2.1e-05"/>
+                    <joint name="right_ankle_roll" pos="0 0 0" axis="0 1 0" range="-0.523599 0.523599"/>
+                    <geom pos="0.039394 0.027478 0.263751" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Shoe_Flex_1"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="Robot_Football_Player_SKS-2501_Neck_Carbonv2_1" pos="2.5e-05 -0.011152 0.07478">
+      <inertial pos="1.59054e-07 0.000402919 0.00889295" quat="0.5 0.5 0.5 0.5" mass="0.00688992" diaginertia="3e-06 3e-06 1e-06"/>
+      <joint name="head_yaw" pos="0 0 0" axis="0 0 1" range="-0.785398 0.785398"/>
+      <geom pos="-2.5e-05 0.011152 -0.07478" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Robot_Football_Player_SKS-2501_Neck_Carbonv2_1"/>
+      <body name="Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1" pos="-0.02 0 0.03">
+        <inertial pos="0.019224 0.015494 0.0342485" quat="0.764118 -0.277959 0.220013 0.53894" mass="0.264163" diaginertia="0.000258919 0.000252405 0.000191676"/>
+        <joint name="head_pitch" pos="0 0 0" axis="-1 0 0" range="-1.91986 0.698132"/>
+        <geom pos="0.019975 0.011152 -0.10478" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Robot_Football_Player_SKS-2501_Head_B0348_Head_Base_06v1_1"/>
+      </body>
+    </body>
+    <body name="U_Lever_Carbon_2__1" pos="0.0559 -0.01121 0.0494">
+      <inertial pos="0.00771422 0 0" quat="0.707107 0.707107 0 0" mass="0.00757239" diaginertia="3e-06 3e-06 1e-06"/>
+      <joint name="left_shoulder_pitch" pos="0 0 0" axis="1 0 0" range="-3.14159 3.14159"/>
+      <geom pos="-0.0559 0.01121 -0.0494" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_U_Lever_Carbon_2__1"/>
+      <body name="roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1" pos="0.024 -0.02 0">
+        <inertial pos="0.00588589 0.0281815 -0.0333757" quat="0.980335 0.174069 -0.0880385 0.0298613" mass="0.129837" diaginertia="9.59634e-05 8.40948e-05 2.49418e-05"/>
+        <joint name="left_shoulder_roll" pos="0 0 0" axis="0 -1 0" range="0 2.96706"/>
+        <geom pos="-0.0799 0.03121 -0.0494" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_roki_Robot_Football_Player_SKS-2501_Servov12_10_v1_1"/>
+        <body name="Elbow_Bracket_01_1__1" pos="0.01249 0.022575 -0.070832">
+          <inertial pos="0.00404747 0.0010169 -0.0167227" quat="0.438819 0.438819 -0.554471 0.554471" mass="0.0555309" diaginertia="1.62361e-05 1.17639e-05 1.1e-05"/>
+          <joint name="left_elbow_yaw" pos="0 0 0" axis="0.173648 0 -0.984808" range="-1.5708 1.5708"/>
+          <geom pos="-0.09239 0.008635 0.021432" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Elbow_Bracket_01_1__1"/>
+          <body name="Hand_Football_Player_05_1" pos="-0.01401 -0.0079 -0.020748">
+            <inertial pos="0.0156411 1.93856e-08 -0.0673923" quat="0.70476 0.0575601 0.0575601 0.70476" mass="0.0489273" diaginertia="8.4e-05 8.39733e-05 9.02668e-06"/>
+            <joint name="left_elbow_pitch" pos="0 0 0" axis="0.984808 0 0.173648" range="-1.91986 0.174533"/>
+            <geom pos="-0.07838 0.016535 0.04218" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Hand_Football_Player_05_1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="U_Lever_Carbon_1__1" pos="-0.0559 -0.01121 0.0494">
+      <inertial pos="-0.00771422 0 0" quat="0.707107 0.707107 0 0" mass="0.00757239" diaginertia="3e-06 3e-06 1e-06"/>
+      <joint name="right_shoulder_pitch" pos="0 0 0" axis="-1 0 0" range="-3.14159 3.14159"/>
+      <geom pos="0.0559 0.01121 -0.0494" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_U_Lever_Carbon_1__1"/>
+      <body name="roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1" pos="-0.024 -0.02 0">
+        <inertial pos="-0.00588424 0.0281815 -0.033376" quat="0.980335 0.174069 0.0880385 -0.0298613" mass="0.129837" diaginertia="9.59634e-05 8.40948e-05 2.49418e-05"/>
+        <joint name="right_shoulder_roll" pos="0 0 0" axis="0 -1 0" range="-2.96706 0"/>
+        <geom pos="0.0799 0.03121 -0.0494" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_roki_Robot_Football_Player_SKS-2501_Servov12_10__v1_1__1"/>
+        <body name="Elbow_Bracket_01_1" pos="-0.01249 0.022575 -0.070832">
+          <inertial pos="-0.00404747 0.0010169 -0.0167227" quat="0.554471 0.554471 -0.438819 0.438819" mass="0.0555309" diaginertia="1.62361e-05 1.17639e-05 1.1e-05"/>
+          <joint name="right_elbow_yaw" pos="0 0 0" axis="-0.173648 0 -0.984808" range="-1.5708 1.5708"/>
+          <geom pos="0.09239 0.008635 0.021432" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Elbow_Bracket_01_1"/>
+          <body name="Hand_Football_Player_05__1__1" pos="0.01401 -0.0079 -0.020748">
+            <inertial pos="-0.0156411 -1.93856e-08 -0.0673923" quat="0.70476 -0.0575601 -0.0575601 0.70476" mass="0.0489273" diaginertia="8.4e-05 8.39733e-05 9.02668e-06"/>
+            <joint name="right_elbow_pitch" pos="0 0 0" axis="0.984808 0 -0.173648" range="-1.91986 0.174533"/>
+            <geom pos="0.07838 0.016535 0.04218" type="mesh" rgba="0.7 0.7 0.7 1" mesh="col_Hand_Football_Player_05__1__1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

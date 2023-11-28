@@ -69,6 +69,41 @@ params.distHipToKnee = 0.113# 0.093
 params.distKneeToAnkle = 0.082# 0.105
 params.distAnkleToGround = 0.024# 0.032
 params.distFeetLateral = 0.079
+# params.freq = 2.25
+# params.enabledGain = 1.0
+# params.supportPhaseRatio = 0.0
+# params.footYOffset = 0.025
+# params.stepGain = 0.05
+# params.riseGain = 0.08
+# params.turnGain = 0.0
+# params.lateralGain = 0.0
+# params.trunkZOffset = 0.02
+# params.swingGain = 0.02
+# params.swingRollGain = 0.0
+# params.swingPhase = 0.25
+# params.stepUpVel = 4.0
+# params.stepDownVel = 4.0
+# params.riseUpVel = 4.0
+# params.riseDownVel = 5.0
+# params.swingPause = 0.0
+# params.swingVel = 4.0
+# params.trunkXOffset = 0.002 # 0.002
+# params.trunkYOffset = 0.0
+# params.trunkPitch = 0.12
+# params.trunkRoll = 0.0
+# params.extraLeftX = 0.0
+# params.extraLeftY = 0.0
+# params.extraLeftZ = 0.0
+# params.extraRightX = 0.0
+# params.extraRightY = 0.0
+# params.extraRightZ = 0.0
+# params.extraLeftYaw = 0.0
+# params.extraLeftPitch = 0.0
+# params.extraLeftRoll = 0.0
+# params.extraRightYaw = 0.0
+# params.extraRightPitch = 0.0
+# params.extraRightRoll = 0.0
+
 params.freq = 2.25
 params.enabledGain = 1.0
 params.supportPhaseRatio = 0.0
@@ -107,6 +142,8 @@ params.extraRightRoll = 0.0
 phase = 0.0
 labels = {}
 button_enabled = None
+
+index = 0
 
 attribute_ranges = {
     "stepGain": (-0.1, 0.1),
@@ -406,6 +443,7 @@ def _physics_loop(simulate: _Simulate, loader: Optional[_InternalLoaderType]):
 
   # Run until asked to exit.
   while not simulate.exitrequest:
+    
     if simulate.droploadrequest:
       simulate.droploadrequest = 0
       loader = _file_loader(simulate.dropfilename)
@@ -481,12 +519,15 @@ def _physics_loop(simulate: _Simulate, loader: Optional[_InternalLoaderType]):
                   d.ctrl[dof_names[name]] = 0
               else:
                   d.ctrl[dof_names[name]] = getattr(command, name)
+          global index
+          index += 1
           outputs = sk.IKWalkOutputs()
+          if index % 2:
           # if sk.IKWalk.walk(params, timestep / 1000.0, phase, outputs):
-          if sk.IKWalk.walk(params, 0.002, phase, outputs):
-            send_command(outputs)
-            # global phase
-            phase = outputs.phase
+            if sk.IKWalk.walk(params, 0.004, phase, outputs):
+              send_command(outputs)
+              # global phase
+              phase = outputs.phase
           if (elapsedsim < 0 or elapsedcpu < 0 or synccpu == 0 or misaligned or
               simulate.speed_changed):
             # Re-sync.

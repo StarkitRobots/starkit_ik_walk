@@ -199,6 +199,12 @@ void init_ik_walk_outputs(py::module &m)
         .def_readwrite("right_knee", &Rhoban::IKWalkOutputs::right_knee)
         .def_readwrite("right_ankle_pitch", &Rhoban::IKWalkOutputs::right_ankle_pitch)
         .def_readwrite("right_ankle_roll", &Rhoban::IKWalkOutputs::right_ankle_roll)
+        .def_readwrite("left_shoulder_roll", &Rhoban::IKWalkOutputs::left_shoulder_roll)
+        .def_readwrite("left_shoulder_pitch", &Rhoban::IKWalkOutputs::left_shoulder_pitch)
+        .def_readwrite("right_shoulder_roll", &Rhoban::IKWalkOutputs::right_shoulder_roll)
+        .def_readwrite("right_shoulder_pitch", &Rhoban::IKWalkOutputs::right_shoulder_pitch)
+        .def_readwrite("left_elbow", &Rhoban::IKWalkOutputs::left_elbow)
+        .def_readwrite("right_elbow", &Rhoban::IKWalkOutputs::right_elbow)
         .def("__getattr__", [](const Rhoban::IKWalkOutputs& self, const std::string& name) {
         // Custom getattr function to access struct attributes through the __dict__ attribute
             if (name == "__dict__") {
@@ -217,6 +223,12 @@ void init_ik_walk_outputs(py::module &m)
                 dict["right_knee"] = self.right_knee;
                 dict["right_ankle_pitch"] = self.right_ankle_pitch;
                 dict["right_ankle_roll"] = self.right_ankle_roll;
+                dict["left_shoulder_roll"] = self.left_shoulder_roll;
+                dict["left_shoulder_pitch"] = self.left_shoulder_pitch;
+                dict["right_shoulder_roll"] = self.right_shoulder_roll;
+                dict["right_shoulder_pitch"] = self.right_shoulder_pitch;
+                dict["left_elbow"] = self.left_elbow;
+                dict["right_elbow"] = self.right_elbow;
                 return dict;
             }
             std::cout << "GETTING " << name << " attr" << std::endl;
@@ -239,6 +251,187 @@ void init_ik_walk_outputs(py::module &m)
                    "  right_ankle_roll: " + std::to_string(outputs.right_ankle_roll) + "\n"
                    ">";
         });
+}
+
+void init_ik_walk_inputs(py::module &m)
+{
+    py::class_<Rhoban::IKWalkInputs>(m, "IKWalkInputs")
+        .def(py::init<>())
+        .def_readwrite("fusedErrorParams", &Rhoban::IKWalkInputs::fusedErrorParams)
+        .def_readwrite("fusedErrors", &Rhoban::IKWalkInputs::fusedErrors)
+        .def_readwrite("armParams", &Rhoban::IKWalkInputs::armParams)
+        .def_readwrite("stepTiming", &Rhoban::IKWalkInputs::stepTiming)
+        .def("__getattr__", [](const Rhoban::IKWalkInputs& self, const std::string& name) {
+        // Custom getattr function to access struct attributes through the __dict__ attribute
+            if (name == "__dict__") {
+                std::cout << "GETTING __dict__ attr" << std::endl;
+                py::dict dict;
+                dict["fusedErrorParams"] = self.fusedErrorParams;
+                dict["fusedErrors"] = self.fusedErrors;
+                dict["armParams"] = self.armParams;
+                dict["stepTiming"] = self.stepTiming;
+                return dict;
+            }
+            std::cout << "GETTING " << name << " attr" << std::endl;
+            throw py::attribute_error("attribute not found");
+        });
+        // .def("__repr__", [](const Rhoban::IKWalkInputs& inputs) {
+        //     return "<IKWalkInputs:\n"
+        //            "fusedErrorParams: " + std::to_string(inputs.fusedErrorParams) + "\n"
+        //            "  fusedErrors: " + std::to_string(inputs.fusedErrors) + "\n"
+        //            "  armParams: " + std::to_string(inputs.armParams) + "\n"
+        //            ">";
+        // });
+
+    py::class_<Rhoban::IKWalkInputs::FeedbackErrorParams>(m, "FeedbackErrorParams")
+        .def(py::init<>())
+        .def_readwrite("fusedFeedbackX", &Rhoban::IKWalkInputs::FeedbackErrorParams::fusedFeedbackX)
+        .def_readwrite("fusedFeedbackY", &Rhoban::IKWalkInputs::FeedbackErrorParams::fusedFeedbackY)
+        .def_readwrite("fusedDerivativeFeedbackX", &Rhoban::IKWalkInputs::FeedbackErrorParams::fusedDerivativeFeedbackX)
+        .def_readwrite("fusedDerivativeFeedbackY", &Rhoban::IKWalkInputs::FeedbackErrorParams::fusedDerivativeFeedbackY)
+        .def_readwrite("fusedIntegralFeedbackX", &Rhoban::IKWalkInputs::FeedbackErrorParams::fusedIntegralFeedbackX)
+        .def_readwrite("fusedIntegralFeedbackY", &Rhoban::IKWalkInputs::FeedbackErrorParams::fusedIntegralFeedbackY)
+        .def("__getattr__", [](const Rhoban::IKWalkInputs::FeedbackErrorParams& self, const std::string& name) {
+        // Custom getattr function to access struct attributes through the __dict__ attribute
+            if (name == "__dict__") {
+                std::cout << "GETTING __dict__ attr" << std::endl;
+                py::dict dict;
+                dict["fusedFeedbackX"] = self.fusedFeedbackX;
+                dict["fusedFeedbackY"] = self.fusedFeedbackY;
+                dict["fusedDerivativeFeedbackX"] = self.fusedDerivativeFeedbackX;
+                dict["fusedDerivativeFeedbackY"] = self.fusedDerivativeFeedbackY;
+                dict["fusedIntegralFeedbackX"] = self.fusedIntegralFeedbackX;
+                dict["fusedIntegralFeedbackY"] = self.fusedIntegralFeedbackY;
+                return dict;
+            }
+            std::cout << "GETTING " << name << " attr" << std::endl;
+            throw py::attribute_error("attribute not found");
+        });
+        // .def("__repr__", [](const Rhoban::IKWalkInputs::FeedbackErrorParams& errorParams) {
+        //     return "<FeedbackErrorParams:\n"
+        //            "fusedFeedbackX: " + std::to_string(errorParams.fusedFeedbackX) + "\n"
+        //            "fusedFeedbackY: " + std::to_string(errorParams.fusedFeedbackY) + "\n"
+        //            "fusedDerivativeFeedbackX: " + std::to_string(errorParams.fusedDerivativeFeedbackX) + "\n"
+        //            "fusedDerivativeFeedbackY: " + std::to_string(errorParams.fusedDerivativeFeedbackY) + "\n"
+        //            "fusedIntegralFeedbackX: " + std::to_string(errorParams.fusedIntegralFeedbackX) + "\n"
+        //            "fusedIntegralFeedbackY: " + std::to_string(errorParams.fusedIntegralFeedbackY) + "\n"
+        //            ">";
+        // });
+
+    py::class_<Rhoban::IKWalkInputs::FusedError>(m, "FusedError")
+        .def(py::init<>())
+        .def_readwrite("fusedErrorX", &Rhoban::IKWalkInputs::FusedError::fusedErrorX)
+        .def_readwrite("fusedErrorY", &Rhoban::IKWalkInputs::FusedError::fusedErrorY)
+        .def_readwrite("fusedDerivativeErrorX", &Rhoban::IKWalkInputs::FusedError::fusedDerivativeErrorX)
+        .def_readwrite("fusedDerivativeErrorY", &Rhoban::IKWalkInputs::FusedError::fusedDerivativeErrorY)
+        .def_readwrite("fusedIntegralErrorX", &Rhoban::IKWalkInputs::FusedError::fusedIntegralErrorX)
+        .def_readwrite("fusedIntegralErrorY", &Rhoban::IKWalkInputs::FusedError::fusedIntegralErrorY)
+        .def("__getattr__", [](const Rhoban::IKWalkInputs::FusedError& self, const std::string& name) {
+        // Custom getattr function to access struct attributes through the __dict__ attribute
+            if (name == "__dict__") {
+                std::cout << "GETTING __dict__ attr" << std::endl;
+                py::dict dict;
+                dict["fusedErrorX"] = self.fusedErrorX;
+                dict["fusedErrorY"] = self.fusedErrorY;
+                dict["fusedDerivativeErrorX"] = self.fusedDerivativeErrorX;
+                dict["fusedDerivativeErrorY"] = self.fusedDerivativeErrorY;
+                dict["fusedIntegralErrorX"] = self.fusedIntegralErrorX;
+                dict["fusedIntegralErrorY"] = self.fusedIntegralErrorY;
+                return dict;
+            }
+            std::cout << "GETTING " << name << " attr" << std::endl;
+            throw py::attribute_error("attribute not found");
+        });
+        // .def("__repr__", [](const Rhoban::IKWalkInputs::FusedError& errorParams) {
+        //     return "<FusedError:\n"
+        //            "fusedErrorX: " + std::to_string(errorParams.fusedErrorX) + "\n"
+        //            "fusedErrorY: " + std::to_string(errorParams.fusedErrorY) + "\n"
+        //            "fusedDerivativeErrorX: " + std::to_string(errorParams.fusedDerivativeErrorX) + "\n"
+        //            "fusedDerivativeErrorY: " + std::to_string(errorParams.fusedDerivativeErrorY) + "\n"
+        //            "fusedIntegralErrorX: " + std::to_string(errorParams.fusedIntegralErrorX) + "\n"
+        //            "fusedIntegralErrorY: " + std::to_string(errorParams.fusedIntegralErrorY) + "\n"
+        //            ">";
+        // });
+
+    py::class_<Rhoban::IKWalkInputs::FeedbackArmParams>(m, "FeedbackArmParams")
+        .def(py::init<>())
+        .def_readwrite("biasArmAngleX", &Rhoban::IKWalkInputs::FeedbackArmParams::biasArmAngleX)
+        .def_readwrite("biasArmAngleY", &Rhoban::IKWalkInputs::FeedbackArmParams::biasArmAngleY)
+        .def_readwrite("fusedFeedbackArmAngleX", &Rhoban::IKWalkInputs::FeedbackArmParams::fusedFeedbackArmAngleX)
+        .def_readwrite("fusedFeedbackArmAngleY", &Rhoban::IKWalkInputs::FeedbackArmParams::fusedFeedbackArmAngleY)
+        .def_readwrite("fusedDerivativeFeedbackArmAngleX", &Rhoban::IKWalkInputs::FeedbackArmParams::fusedDerivativeFeedbackArmAngleX)
+        .def_readwrite("fusedDerivativeFeedbackArmAngleY", &Rhoban::IKWalkInputs::FeedbackArmParams::fusedDerivativeFeedbackArmAngleY)
+        .def_readwrite("fusedIntegralFeedbackArmAngleX", &Rhoban::IKWalkInputs::FeedbackArmParams::fusedIntegralFeedbackArmAngleX)
+        .def_readwrite("fusedIntegralFeedbackArmAngleY", &Rhoban::IKWalkInputs::FeedbackArmParams::fusedIntegralFeedbackArmAngleY)
+        .def_readwrite("extension", &Rhoban::IKWalkInputs::FeedbackArmParams::extension)
+        .def("__getattr__", [](const Rhoban::IKWalkInputs::FeedbackArmParams& self, const std::string& name) {
+        // Custom getattr function to access struct attributes through the __dict__ attribute
+            if (name == "__dict__") {
+                std::cout << "GETTING __dict__ attr" << std::endl;
+                py::dict dict;
+                dict["biasArmAngleX"] = self.biasArmAngleX;
+                dict["biasArmAngleY"] = self.biasArmAngleY;
+                dict["fusedFeedbackArmAngleX"] = self.fusedFeedbackArmAngleX;
+                dict["fusedFeedbackArmAngleY"] = self.fusedFeedbackArmAngleY;
+                dict["fusedDerivativeFeedbackArmAngleX"] = self.fusedDerivativeFeedbackArmAngleX;
+                dict["fusedDerivativeFeedbackArmAngleY"] = self.fusedDerivativeFeedbackArmAngleY;
+                dict["fusedIntegralFeedbackArmAngleX"] = self.fusedIntegralFeedbackArmAngleX;
+                dict["fusedIntegralFeedbackArmAngleY"] = self.fusedIntegralFeedbackArmAngleY;
+                dict["extension"] = self.extension;
+                return dict;
+            }
+            std::cout << "GETTING " << name << " attr" << std::endl;
+            throw py::attribute_error("attribute not found");
+        });
+        // .def("__repr__", [](const Rhoban::IKWalkInputs::FeedbackArmParams& armParams) {
+        //     return "<FusedError:\n"
+        //            "biasArmAngleX: " + std::to_string(armParams.biasArmAngleX) + "\n"
+        //            "biasArmAngleY: " + std::to_string(armParams.biasArmAngleY) + "\n"
+        //            "fusedFeedbackArmAngleX: " + std::to_string(armParams.fusedFeedbackArmAngleX) + "\n"
+        //            "fusedFeedbackArmAngleY: " + std::to_string(armParams.fusedFeedbackArmAngleY) + "\n"
+        //            "fusedDerivativeFeedbackArmAngleX: " + std::to_string(armParams.fusedDerivativeFeedbackArmAngleX) + "\n"
+        //            "fusedDerivativeFeedbackArmAngleY: " + std::to_string(armParams.fusedDerivativeFeedbackArmAngleY) + "\n"
+        //            "fusedIntegralFeedbackArmAngleX: " + std::to_string(armParams.fusedIntegralFeedbackArmAngleX) + "\n"
+        //            "fusedIntegralFeedbackArmAngleY: " + std::to_string(armParams.fusedIntegralFeedbackArmAngleY) + "\n"
+        //            ">";
+        // });
+
+        py::class_<Rhoban::IKWalkInputs::StepTimingParams>(m, "StepTimingParams")
+        .def(py::init<>())
+        .def_readwrite("deadbandRadius", &Rhoban::IKWalkInputs::StepTimingParams::deadbandRadius)
+        .def_readwrite("gainSpeedUp", &Rhoban::IKWalkInputs::StepTimingParams::gainSpeedUp)
+        .def_readwrite("gainSlowDown", &Rhoban::IKWalkInputs::StepTimingParams::gainSlowDown)
+        .def_readwrite("weightFactor", &Rhoban::IKWalkInputs::StepTimingParams::weightFactor)
+        .def_readwrite("doubleSupportPhaseLen", &Rhoban::IKWalkInputs::StepTimingParams::doubleSupportPhaseLen)
+        .def_readwrite("gaitFrequencyMax", &Rhoban::IKWalkInputs::StepTimingParams::gaitFrequencyMax)
+        .def("__getattr__", [](const Rhoban::IKWalkInputs::StepTimingParams& self, const std::string& name) {
+        // Custom getattr function to access struct attributes through the __dict__ attribute
+            if (name == "__dict__") {
+                std::cout << "GETTING __dict__ attr" << std::endl;
+                py::dict dict;
+                dict["deadbandRadius"] = self.deadbandRadius;
+                dict["gainSpeedUp"] = self.gainSpeedUp;
+                dict["gainSlowDown"] = self.gainSlowDown;
+                dict["weightFactor"] = self.weightFactor;
+                dict["doubleSupportPhaseLen"] = self.doubleSupportPhaseLen;
+                dict["gaitFrequencyMax"] = self.gaitFrequencyMax;
+                return dict;
+            }
+            std::cout << "GETTING " << name << " attr" << std::endl;
+            throw py::attribute_error("attribute not found");
+        });
+        // .def("__repr__", [](const Rhoban::IKWalkInputs::FeedbackArmParams& armParams) {
+        //     return "<FusedError:\n"
+        //            "biasArmAngleX: " + std::to_string(armParams.biasArmAngleX) + "\n"
+        //            "biasArmAngleY: " + std::to_string(armParams.biasArmAngleY) + "\n"
+        //            "fusedFeedbackArmAngleX: " + std::to_string(armParams.fusedFeedbackArmAngleX) + "\n"
+        //            "fusedFeedbackArmAngleY: " + std::to_string(armParams.fusedFeedbackArmAngleY) + "\n"
+        //            "fusedDerivativeFeedbackArmAngleX: " + std::to_string(armParams.fusedDerivativeFeedbackArmAngleX) + "\n"
+        //            "fusedDerivativeFeedbackArmAngleY: " + std::to_string(armParams.fusedDerivativeFeedbackArmAngleY) + "\n"
+        //            "fusedIntegralFeedbackArmAngleX: " + std::to_string(armParams.fusedIntegralFeedbackArmAngleX) + "\n"
+        //            "fusedIntegralFeedbackArmAngleY: " + std::to_string(armParams.fusedIntegralFeedbackArmAngleY) + "\n"
+        //            ">";
+        // });
 }
 
 void init_ik_walk(py::module &m)
@@ -274,6 +467,7 @@ PYBIND11_MODULE(starkit_ik_walk, m) {
     
     init_ik_walk_parameters(m);
     init_ik_walk_outputs(m);
+    init_ik_walk_inputs(m);
     init_ik_walk(m);
 
 }
@@ -290,6 +484,8 @@ void runWalk(
 {
     //Leg motor computed positions
     struct Rhoban::IKWalkOutputs outputs;
+
+    struct Rhoban::IKWalkInputs inputs;
     
     //Walk engine frequency
     double engineFrequency = 50.0;
@@ -300,7 +496,9 @@ void runWalk(
             params, //Walk parameters
             1.0/engineFrequency, //Time step
             phase, //Current walk phase -will be updated)
-            outputs); //Result target position (updated)
+            outputs, //Result target position (updated)
+            inputs
+        );
         if (!success) {
             //The requested position for left or right foot is not feasible
             //(phase is not updated)

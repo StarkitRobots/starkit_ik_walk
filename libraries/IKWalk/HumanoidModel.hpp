@@ -10,6 +10,7 @@ namespace Rhoban {
  * Leg motor result positions
  */
 struct IKWalkOutputs {
+    
     double phase;
     double left_hip_yaw;
     double left_hip_roll;
@@ -23,6 +24,14 @@ struct IKWalkOutputs {
     double right_knee;
     double right_ankle_pitch;
     double right_ankle_roll;
+
+    double left_shoulder_roll;
+    double left_shoulder_pitch;
+    double right_shoulder_roll;
+    double right_shoulder_pitch;
+
+    double left_elbow;
+    double right_elbow;
 };
 
 }

@@ -20,6 +20,7 @@ set(HEADERS_FILES_WALK
     CubicSpline.hpp
     HumanoidModel.hpp
     IKWalk.hpp
+    IKWalkInputs.hpp
     LegIK.hpp
     Polynom.hpp
     Spline.hpp
@@ -34,8 +35,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 find_package(Eigen3 REQUIRED)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../eigen)
 
+set(PYBIND11_PYTHON_VERSION 3.8)
+add_subdirectory(../pybind11 pybind11)
 #Enable C++11
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 #Enable compiler Warning
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall")
 

@@ -1,6 +1,7 @@
 #ifndef LEPH_IKWALK_HPP
 #define LEPH_IKWALK_HPP
 
+#include "IKWalkInputs.hpp"
 #include "HumanoidModel.hpp"
 
 namespace Rhoban {
@@ -206,7 +207,9 @@ class IKWalk
             IKWalkParameters& params, 
             double dt,
             double& phase, 
-            IKWalkOutputs& outputs);
+            IKWalkOutputs& outputs,
+            const IKWalkInputs& inputs
+            );
 
         /**
          * Cycle given phase between 0 and 1

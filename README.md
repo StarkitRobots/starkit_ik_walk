@@ -41,7 +41,7 @@ $ python3 --version
 
 ### Система сборки
 
-Для сборки библиотеки понадобится также система сборки CMake. Проверить её версию можно, используя команду консоли:
+Для сборки библиотеки понадобится также система сборки [CMake](https://cmake.org/). Проверить её версию можно, используя команду консоли:
 
 ```bash
 $ cmake --version
@@ -53,7 +53,7 @@ $ cmake --version
 $ sudo apt install cmake
 ```
 
-чтобы установить последнюю версию CMake. Можно также воспользоваться и другими методами установки, если это необходимо.
+чтобы установить последнюю версию [CMake](https://cmake.org/). Можно также воспользоваться и другими методами установки, если это необходимо.
 
 
 ## Шаг 2: установка webots
@@ -72,9 +72,20 @@ $ sudo apt install cmake
 $ sudo apt --fix-broken install ./webots_2023b_amd64.deb
 ```
 
+---
+
 ### Вариант 2: RoboCup Humanoid webots
 
 Этот вариант представляет интерес из-за некоторых возможностей, которые не поддерживаются текущей версие webots. Например, в данной версии webots поддерживается люфт, что может быть полезно в некоторых задачах.
+
+Для полноценной установки необходимо клонировать исходники [из репозитория с webots'ом RoboCup Humanoid League TC](https://github.com/RoboCup-Humanoid-TC/webots) и далее следовать [официальной инструкции](https://github.com/cyberbotics/webots/wiki/Linux-installation/). Начинать установку можно с команды
+
+```bash
+$ git clone --recurse-submodules -j8 https://github.com/RoboCup-Humanoid-TC/webots.git
+$ cd webots
+```
+
+Перед сборкой стоит дополнительно установить python3.6 - python3.9, если текущая версия новее или старее - это нужно для корректной работы контроллера. Если сборка проводилась с другими версиями Python, то необходимо пересобрать webots из того же репозитория.
 
 ...
 
@@ -87,6 +98,8 @@ $ sudo apt --fix-broken install ./webots_2023b_amd64.deb
 ### WSL
 
 В случае работы с WSL можно установить [ros noetic desktop](https://wiki.ros.org/noetic). Его можно установить по [официальной инструкции](https://wiki.ros.org/noetic/Installation/Ubuntu).
+
+---
 
 ### Dual boot
 
@@ -102,50 +115,68 @@ $ echo "source /opt/ros/humble/source.bash" >> ~/.bashrc
 
 После этого можно обновить консоль. Кроме того, при каждом открытии можно свободно использовать ROS2.
 
-### Шаг 3: дополнительные пакеты
-
-Во время установки ros можно выполнить установку дополнительных пакетов. Вам понадобятся [tkinter](https://wiki.python.org/moin/TkInter) и [eigen3](https://eigen.tuxfamily.org/index.php?title=Main_Page). Для этого можно использовать команды:
-
-```bash
-
-$ sudo apt install python3-tk
-$ sudo apt install libeigen3-dev
-
-```
-
-### Шаг 4: сборка библиотеки для работы мира
+## Шаг 4: сборка библиотеки для работы мира
 
 Далее необходимо клонировать репозиторий [ik_walk](https://github.com/StarkitRobots/starkit_ik_walk) и обновить его, добавляя библиотеки [pybind11](https://github.com/pybind/pybind11) и [eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page). Для этого нужно выполнить команды
 
 ```bash
-
-$ git clone ...
-$ git submodules update --init --recursive
-
+$ git clone https://github.com/StarkitRobots/starkit_ik_walk.git
+$ cd starkit_ik_walk
+$ git submodule update --init --recursive
 ```
 
-После этого переходим в папку с библиотекой и собираем проект, используя [CMake](https://cmake.org/)
+Теперь в директориях libraries/eigen и libraries/pybind11 появятся файлы этих зависимостей, которые будут использованы в сборке проекта.
+
+Чтобы получить бинарный файл с библиотекой нужно собрать проект и скопировать результат в директорию с контроллером. Для этого, используя [CMake](https://cmake.org/), получим билд библиотеки, выполнив следующие команды:
 
 ```bash
-
 $ cd libraries/IKWalk
 $ mkdir build
 $ cd build
 $ cmake ..
 $ cmake --build .
-
+$ cp starkit_ik_walk.cpython-3xx-x86_64-linux-gnu.so ../../../controllers/ik_walk/ # instead of 3xx need to place your version of python3; ex: 310 for Python 3.10.xx
 ```
 
-Получившийся файл с расширением .so необходимо переместить в папку controllers/ik_walk/
+Кроме того, можно создать ссылку на билд библиотеки в директории с контроллером при помощи команды
 
-### Шаг 5: запуск мира
+```bash
+$ ln -sf ../../libraries/IKWalk/build/starkit_ik_walk.cpython-3xx-x86_64-linux-gnu.so starkit_ik_walk.cpython-3xx-x86_64-linux-gnu.so
+```
+
+Команду нужно выполнить в директории с контроллером. Таким образом при каждой новой сборке проекта не нужно заново копировать собранную версию, что полезно, если ведётся работа непосредственно над кодом библиотеки, а не над кодом контроллера.
+
+## Шаг 5: запуск мира
 
 После выполнения всех действий можно перейти в папку worlds и запустить мир
 
 ```bash
-
 $ cd worlds
 $ webots sahr.wbt
-
 ```
-После этого процесс установки мира можно считать завершённым
+
+Если производилась установка webots версии из репозитория RoboCup Humanoid, то для начала стоит убедиться, что используются правильные файлы мира и proto-файл. 
+
+Для запуска стоит зайти в директорию с бинарным фалом webots и запустить мир:
+
+```bash
+$ ./webots ~/path_to_starkit_ik_walk/starkit_ik_walk/worlds/sahr.wbt
+```
+
+После этого стоит изменить версию интерпретатора Python для запуска контроллера на ту, которая использовалась для сборки на втором шаге.
+После этого может понадобиться установка tkinter, что можно сделать командой 
+
+```bash
+$ sudo apt install python3.x-tk
+```
+
+После этого процесс установки мира можно считать завершённым.
+
+## Дополнительно (решение проблем при установке)
+
+Во время установки ROS можно выполнить установку дополнительных пакетов. Понадобятся [tkinter](https://wiki.python.org/moin/TkInter) и [eigen3](https://eigen.tuxfamily.org/index.php?title=Main_Page). Для этого можно использовать команды:
+
+```bash
+$ sudo apt install python3-tk
+$ sudo apt install libeigen3-dev
+```

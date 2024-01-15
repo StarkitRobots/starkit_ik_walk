@@ -66,7 +66,7 @@ $ sudo apt install cmake
 
 Данный способ достаточно простой. В результате на устройстве будет рабочая последняя версия webots, готовая для запуска с контроллерами из настоящей библиотеки.
 
-Первым делом необходимо скачать пакет webots_xxxxx_amd64.deb с официального сайта [webots](http://cyberbotics.com). После этого переходим в папку со скачанным пакетом и устанавливаем его командой 
+Первым делом необходимо скачать пакет **webots_xxxxx_amd64.deb** с официального сайта [webots](http://cyberbotics.com). После этого переходим в папку со скачанным пакетом и устанавливаем его командой 
 
 ```bash
 $ sudo apt --fix-broken install ./webots_2023b_amd64.deb
@@ -78,9 +78,29 @@ $ sudo apt --fix-broken install ./webots_2023b_amd64.deb
 
 ...
 
-### Шаг 2: установка ros noetic desktop
+## Шаг 3: установка ROS noetic desktop
 
-Далее для полноценной работы необходимо установить [ros noetic desktop](https://wiki.ros.org/noetic) по [инструкции](https://wiki.ros.org/noetic/Installation/Ubuntu).
+Кроме того, для полноценной работы необходим ROS - Robot Operating System - набор программных средств для разработки програмного обеспечения для робота.
+
+Здесь возможно несколько вариантов:
+
+### WSL
+
+В случае работы с WSL можно установить [ros noetic desktop](https://wiki.ros.org/noetic). Его можно установить по [официальной инструкции](https://wiki.ros.org/noetic/Installation/Ubuntu).
+
+### Dual boot
+
+Если основной операционной системой является Linux или он установлен в качестве второй ОС, то стоит установить [ROS2](https://www.ros.org/). Например, [ros-humble-desktop](https://docs.ros.org/en/humble/Installation.html), используя официальную инструкцию.
+
+К этой инструкции стоит добавить, что можно указать источник ROS2 setup.bash в .bashrc, чтобы ROS2 был доступен при каждом запуске терминала.
+
+Для этого стоит выаполнить команду 
+
+```bash
+$ echo "source /opt/ros/humble/source.bash" >> ~/.bashrc
+```
+
+После этого можно обновить консоль. Кроме того, при каждом открытии можно свободно использовать ROS2.
 
 ### Шаг 3: дополнительные пакеты
 

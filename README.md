@@ -6,8 +6,8 @@
 
 Данная инструкция была протестирована на следующих конфигурациях системы:
 
-- Win11 + WSL2: Ubuntu 20.04.6 LTS; Python: 3.11
-- Ubuntu 22.04.3 LTS (dual boot);   Python: 3.10
+- Win11 + WSL2: Ubuntu 20.04.6 LTS; Base Python: 3.11
+- Ubuntu 22.04.3 LTS (dual boot);   Base Python: 3.10
 
 ## Содержание
 

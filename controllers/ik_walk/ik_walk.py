@@ -15,16 +15,16 @@ import starkit_ik_walk as sk
 
 params = sk.IKWalkParameters()
 
-params.distHipToKnee = 0.093
-params.distKneeToAnkle = 0.105
-params.distAnkleToGround = 0.032
+params.distHipToKnee = 0.141
+params.distKneeToAnkle = 0.14
+params.distAnkleToGround = 0.042
 params.distFeetLateral = 0.092
-params.freq = 1.7
+params.freq = 2.0
 params.enabledGain = 0.0
 params.supportPhaseRatio = 0.0
-params.footYOffset = 0.025
+params.footYOffset = 0.03
 params.stepGain = 0.0
-params.riseGain = 0.035
+params.riseGain = 0.04
 params.turnGain = 0.0
 params.lateralGain = 0.0
 params.trunkZOffset = 0.02

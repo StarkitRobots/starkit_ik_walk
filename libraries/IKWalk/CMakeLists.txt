@@ -31,9 +31,10 @@ set(PYTHON_BINDING_FILE
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 #Eigen library dependency
-find_package(Eigen3 REQUIRED)
+#find_package(Eigen3 REQUIRED)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../eigen)
 
+add_subdirectory(../pybind11 pybind11)
 #Enable C++11
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 #Enable compiler Warning
@@ -53,4 +54,3 @@ install(TARGETS starkit_ik_walk
   COMPONENT python
   LIBRARY DESTINATION "${PYTHON_LIBRARY_DIR}"
   )
-

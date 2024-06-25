@@ -220,26 +220,25 @@ bool IKWalk::walk(
         return false;
     }
 
-    
 
-    //Increment given phase
-    phase += dt * params.freq;
+    //Increment given pha
+    phase += dt * params.freq * params.enabledGain;
     //Cycling between 0 and 1
     boundPhase(phase);
     outputs.phase = phase;
 
-    auto shoulder_pitch = inputs.armParams.biasArmAngleY 
-        + inputs.armParams.fusedFeedbackArmAngleY * inputs.fusedErrors.fusedErrorY
-        + inputs.armParams.fusedDerivativeFeedbackArmAngleY * inputs.fusedErrors.fusedDerivativeErrorY
-        + inputs.armParams.fusedIntegralFeedbackArmAngleY * inputs.fusedErrors.fusedIntegralErrorY;
+    // auto shoulder_pitch = inputs.armParams.biasArmAngleY 
+    //     + inputs.armParams.fusedFeedbackArmAngleY * inputs.fusedErrors.fusedErrorY
+    //     + inputs.armParams.fusedDerivativeFeedbackArmAngleY * inputs.fusedErrors.fusedDerivativeErrorY
+    //     + inputs.armParams.fusedIntegralFeedbackArmAngleY * inputs.fusedErrors.fusedIntegralErrorY;
     
-    auto alpha = std::acos(1.0 - inputs.armParams.extension);
+    // auto alpha = std::acos(1.0 - inputs.armParams.extension);
 
-    outputs.left_shoulder_pitch = shoulder_pitch + alpha;
-    outputs.right_shoulder_pitch = shoulder_pitch + alpha;
+    // outputs.left_shoulder_pitch = shoulder_pitch + alpha;
+    // outputs.right_shoulder_pitch = shoulder_pitch + alpha;
 
-    outputs.left_elbow = -2.0 * alpha;
-    outputs.right_elbow = -2.0 * alpha;
+    // outputs.left_elbow = -2.0 * alpha;
+    // outputs.right_elbow = -2.0 * alpha;
 
     return true;
 }

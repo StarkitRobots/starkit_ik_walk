@@ -1,7 +1,7 @@
 import numpy as np
 
 from feedback.mean_filter       import MeanFilter
-from feedback.wlbf_filter       import WLBFFilter
+from controllers.ik_walk.feedback.WLBF_Filter       import WLBFFilter
 
 from feedback.ew_integrator     import EWIntegrator
 

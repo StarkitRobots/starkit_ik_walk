@@ -1,6 +1,6 @@
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
-from controller import Robot
+from controller import Supervisor
 import starkit_ik_walk as sk
 
 params = sk.IKWalkParameters()
@@ -102,7 +102,7 @@ dof_names = [
 ]
 
 # create the Robot instance.
-robot = Robot()
+robot = Supervisor()
 
 servos = {}
 for name in dof_names:
@@ -111,8 +111,7 @@ for name in dof_names:
 def send_command(command: sk.IKWalkOutputs):
     for name, motor in servos.items():
         # if "elbow" in name:
-        #     motor.setPosition(-2.5)
-        # else:
+            # print(getattr(command, name))
         motor.setPosition(getattr(command, name))
 
 inputs = sk.IKWalkInputs()

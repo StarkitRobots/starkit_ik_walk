@@ -3,6 +3,53 @@ from tkinter import ttk
 
 from setup.robot_params import attribute_ranges, labels, params, inputs, inputs_ranges
 
+from setup.stabSetup import PIDStab, PIDStabLabels, PIDStabRanges
+from setup.pulseSetup import pulseGen, pulseLabels, enableRandomPulse, pulseRanges
+
+randomPulseEnabledButton = None
+
+def createRandomPulseWindow():
+    global pulseLabels
+    global randomPulseEnabledButton
+
+    window  = tk.Tk()
+    window.title("Random Pulse Params")
+
+    randomPulseEnabledButton = ttk.Button(window, text="Enable", command=toggleEnableRandomPulse)
+    randomPulseEnabledButton.pack(padx=10, pady=10)
+
+    for parameterName, (minVal, maxVal) in pulseRanges.items():
+        label = ttk.Label(window, text=f"{parameterName}: {getattr(pulseGen, parameterName):.3f}")
+        pulseLabels[parameterName] = label
+        label.pack(pady=5)
+
+        trackbar = ttk.Scale(window, from_=minVal, to=maxVal, length=200, orient=tk.HORIZONTAL,
+                                 command=lambda value, name=parameterName: updatePulseGen(name, value))
+        
+        trackbar.set(getattr(pulseGen, parameterName))
+        trackbar.pack(pady=5)
+
+    return window
+
+def toggleEnableRandomPulse():
+    global enableRandomPulse
+    global randomPulseEnabledButton
+
+    enableRandomPulse = True
+    randomPulseEnabledButton.configure(text="Disable" if enableRandomPulse else "Enable")
+
+def updatePulseGen(paramName, value):
+    global pulseLabels
+    global pulseGen
+
+    setattr(pulseGen, paramName, float(value) if "count" not in paramName else int(float(value)))
+    if paramName in pulseLabels.keys():
+        pulseLabels[paramName].configure(text=f"{paramName}: {getattr(pulseGen, paramName):.3f}")
+
+    if "ampl" not in paramName:
+        pulseGen.launch()
+
+
 button_enabled = None
 button_stab = None
 
@@ -76,6 +123,8 @@ def create_window_2():
 def create_window_3():
     global inputs
     global button_stab
+    global 
+
     window = tk.Tk()
     window.title("Stabilization")
     
@@ -103,13 +152,17 @@ w2 = create_window_2()
 w2.geometry("+100+550")
 w3 = create_window_3()
 w3.geometry("+100+550")
+rpwind = createRandomPulseWindow()
+rpwind.geometry("+100+550")
 
 
 def update_windows():
-    global w1, w2, w3
+    global w1, w2, w3, rpwind
     w1.update_idletasks()
     w1.update()
     w2.update_idletasks()
     w2.update()
     w3.update_idletasks()
     w3.update()
+    rpwind.update_idletasks()
+    rpwind.update()

@@ -7,7 +7,8 @@ import pandas as pd
 import starkit_ik_walk as sk
 
 from utils.AnglesConverter  import AnglesConverter
-from utils.PulseGenerator   import PulseGenerator
+
+from setup.pulseSetup import pulseGen, enableRandomPulse
 
 from stabilization.PIDStab      import PIDStabilization
 from stabilization.PressureStab import PressureStab
@@ -19,8 +20,8 @@ from setup.windows_setup import update_windows
 from setup.robot_params import robot, params, inputs
 from setup.robot_params import send_command
 
-enableStabilization         = True
-enablePressureStabilization = False
+enableStabilization         = False
+enablePressureStabilization = True
 enableWriting               = False
 
 if enableWriting:
@@ -38,9 +39,9 @@ conv = AnglesConverter()
 pulseDirection = np.array([0.0, 1.0, 0.0])
 pulsePeriod = 0.5   # sec
 pulseLength = 0.2   # sec
-pulseAmpl = 1.0     # N
+pulseAmpl = 2.0     # N
 
-pulseGen = PulseGenerator(pulseDirection, pulsePeriod, pulseLength, pulseAmpl)
+# pulseGen = PeriodicPulseGenerator(pulseDirection, pulsePeriod, pulseLength, pulseAmpl)
 
 PIDStab = PIDStabilization()
 PIDStab.params.defaultFusedPitch = -params.trunkPitch
@@ -50,6 +51,7 @@ phase = 0.0
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
+# pulseGen = RandomPulseGenerator(pulseDirection, pulseAmpl, pulseLength, 10.0, 5)
     
 imu = robot.getDevice("imu")
 imu.enable(timestep)
@@ -69,11 +71,20 @@ if enablePressureStabilization:
 prev_freq = params.freq
 
 while robot.step(timestep) != -1:
+
+    # pulseGen.ampl += 0.001
     update_windows()
     
     outputs = sk.IKWalkOutputs()
 
-    robotBody.addForce(pulseGen.pulse(timestep / 1000).tolist(), False)
+    if enableRandomPulse:
+        pulse = pulseGen.tick(timestep / 1000)
+        print(pulse)
+
+        robotBody.addForce(pulse.tolist(), False)
+
+    # if pressStab.isLeftSupport and pressStab.timeSinceLastStep / pressStab.stepDuration > 0.5:
+    #     robotBody.addForce([0.0, 7.0, 0.0], False)
 
     if params.enabledGain > 0.0:
         pressStab.startWalking()

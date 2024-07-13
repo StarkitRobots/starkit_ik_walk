@@ -5,7 +5,7 @@ WorldInfo {
     "Version 0.2"
   ]
   title "Robocup V-HL Kid"
-  basicTimeStep 4
+  basicTimeStep 8
   optimalThreadCount 1
   physicsDisableTime 0.1
   physicsDisableLinearThreshold 0.1

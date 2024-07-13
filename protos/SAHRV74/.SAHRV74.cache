@@ -1,11 +1,11 @@
 Webots Proto Cache File version 1.5
-protoFileHash: 778261843d38264ef6c37b226257d196
+protoFileHash: 6b2403b9651af405f450af3d60e25d6b
 needsRobotAncestor: 1
 baseType: Robot
 slotType: 
-parameters: translation,rotation,name,controller,controllerArgs,customData,supervisor,synchronization,selfCollision,backlash,teamColor,playerNumber,MX64_torque_14_8V,MX64_vel_14_8V,MX64_damping_14_8V,MX64_friction_14_8V,MX64_backlash,MX64_resolution,MX106_torque_14_8V,MX106_vel_14_8V,MX106_damping_14_8V,MX106_friction_14_8V,MX106_backlash,MX106_resolution,RED,BLUE
+parameters: translation,rotation,name,controller,controllerArgs,customData,supervisor,synchronization,selfCollision,backlash,randomSeed,teamColor,playerNumber,MX64_torque_14_8V,MX64_vel_14_8V,MX64_damping_14_8V,MX64_friction_14_8V,MX64_backlash_min,MX64_backlash_max,MX64_resolution,MX106_torque_14_8V,MX106_vel_14_8V,MX106_damping_14_8V,MX106_friction_14_8V,MX106_backlash_min,MX106_backlash_max,MX106_resolution,RED,BLUE
 tags: 
 license:  Apache License 2.0
 licenseUrl:  http://www.apache.org/licenses/LICENSE-2.0
 documentationUrl: 
-info: This\sis\sa\sproto\sfile\sfor\sWebots\sfor\sthe\sSAHRV69\nExtracted\sfrom:\sSAHR_v69/urdf/SAHR_v69.urdf\n
+info: This\sis\sa\sproto\sfile\sfor\sWebots\sfor\sthe\sSAHRV69\nExtracted\sfrom:\sSAHR_v69/urdf/SAHR_v69.urdf

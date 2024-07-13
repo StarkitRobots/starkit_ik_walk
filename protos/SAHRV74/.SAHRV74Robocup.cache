@@ -1,11 +1,11 @@
 Webots Proto Cache File version 1.5
-protoFileHash: d94aff85c3c62ccdac410ff1eb2966e7
+protoFileHash: 608874b6519fd713aa5ce340808269d1
 needsRobotAncestor: 0
 baseType: Robot
 slotType: 
-parameters: translation,rotation,name,controllerArgs,customData
+parameters: translation,rotation,name,controller,controllerArgs,customData
 tags: 
 license:  Apache License 2.0
 licenseUrl:  http://www.apache.org/licenses/LICENSE-2.0
 documentationUrl: 
-info: This\sis\sa\sproto\sfile\sfor\sWebots\sfor\sthe\sWolfgangRobocup\n
+info: This\sis\sa\sproto\sfile\sfor\sWebots\sfor\sthe\sWolfgangRobocup

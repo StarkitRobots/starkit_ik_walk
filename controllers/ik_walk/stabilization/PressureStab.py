@@ -16,7 +16,7 @@ class PressureStab:
         edgeSensorsWeightY:     float = 2.4
 
         securityPhase:              float = 1.0
-        securityPressureCenterY:    float = 0.05
+        securityPressureCenterY:    float = -0.05
 
     def __init__(self, frequency: float) -> None:
         self.params = self.Parameters()
@@ -45,8 +45,6 @@ class PressureStab:
     def getCurrentPhase(self, leftPressure: np.ndarray, rightPressure: np.ndarray, elapsed: float) -> float:
         pressureCenterY = self.getPressureCenterY(leftPressure, rightPressure)
 
-        # print(pressureCenterY)
-        # print(self.isLeftSupport)
         walkProgressionMultiplier = 1.0
 
         prevStepPhase = self.timeSinceLastStep / self.stepDuration

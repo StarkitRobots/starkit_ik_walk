@@ -76,18 +76,20 @@ class RandomPulseGenerator(TimedPulseGenerator):
         self.timeOverall = timeOverall
         self.count = count
 
-        self.__pulsePoints = np.array([0.0] * count)
-        self.__currentPulse = 0
+        self.pulsePoints = np.array([0.0] * count)
+        self.currentPulse = 0
 
         self.time = 0.0
 
         self.launch()
 
+    def timeToNextPulse(self) -> float:
+        return self.pulsePoints[self.currentPulse] - self.time if self.currentPulse < len(self.pulsePoints) else 0.0
 
     def launch(self) -> None:
-        self.__pulsePoints = np.array([self.timeOverall / self.count * i for i in range(self.count)])
-        self.__pulsePoints += np.random.uniform(0.0, self.timeOverall / self.count - self.length, self.count)
-        self.__currentPulse = 0
+        self.pulsePoints = np.array([self.timeOverall / self.count * i for i in range(self.count)])
+        self.pulsePoints += np.random.uniform(0.0, self.timeOverall / self.count - self.length, self.count)
+        self.currentPulse = 0
 
         self.time = 0.0
 
@@ -95,7 +97,23 @@ class RandomPulseGenerator(TimedPulseGenerator):
         return self.time > self.timeOverall
     
     def isPulse(self) -> bool:
-        if self.__currentPulse < len(self.__pulsePoints) and self.time >= self.__pulsePoints[self.__currentPulse] + self.length:
-            self.__currentPulse += 1
+        if self.currentPulse < len(self.pulsePoints) and self.time >= self.pulsePoints[self.currentPulse] + self.length:
+            self.currentPulse += 1
 
-        return self.__currentPulse < len(self.__pulsePoints) and self.__pulsePoints[self.__currentPulse] <= self.time < self.__pulsePoints[self.__currentPulse] + self.length
+        return self.currentPulse < len(self.pulsePoints) and self.pulsePoints[self.currentPulse] <= self.time < self.pulsePoints[self.currentPulse] + self.length
+    
+class RandomDelayedPulseGenerator(RandomPulseGenerator):
+
+    def __init__(self, direction: np.ndarray, ampl: float = None, length: float = 0.5, timeOverall: float = 10, count: int = 5, delay: float=0.0) -> None:
+        assert length * count < timeOverall - delay * count
+
+        self.__delay = delay
+
+        super().__init__(direction, ampl, length, timeOverall, count)
+
+    def launch(self) -> None:
+        self.pulsePoints = np.array([self.timeOverall / self.count * i for i in range(self.count)])
+        self.pulsePoints += np.random.uniform(self.__delay, self.timeOverall / self.count - self.length, self.count)
+        self.currentPulse = 0
+
+        self.time = 0.0

@@ -11,6 +11,9 @@ class MeanFilter:
         self.calculateMean()
         return self.__mean
     
+    def mean(self):
+        return self.__mean
+    
     def handle(self, value):
         return self.update(value)
 

@@ -24,7 +24,7 @@ class WLBF_Filter:
         self.__y_buff = np.append(self.__y_buff[1:], y)
         self.__w_buff = np.append(self.__w_buff[1:], w)
     
-    def handle(self, elapsed: float, value: float) -> float:
+    def handle(self, value: float, elapsed: float) -> float:
         self.put(self.__x_buff[-1] + elapsed, value, 1)
         return self.updatedDeriv()
 
@@ -36,6 +36,8 @@ class WLBF_Filter:
         xmean = np.sum(self.__w_buff * self.__x_buff)
         ymean = np.sum(self.__w_buff * self.__y_buff)
         wsum = np.sum(self.__w_buff)
+
+        # print("Derivative value buffer", self.__y_buff)
 
         if wsum == 0:
             self.__a = self.__b = self.__x_mean = 0

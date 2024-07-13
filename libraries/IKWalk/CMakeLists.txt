@@ -3,8 +3,20 @@
 ### Starkit 2023
 ###
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.22)
 project(starkit_ik_walk)
+
+function(has_package PACKAGE)
+    find_package(${PACKAGE} QUIET)
+
+    if(NOT DEFINED ${PACKAGE}_DIR OR ${PACKAGE}_DIR)
+        set(HAS_PACKAGE_${PACKAGE} TRUE PARENT_SCOPE)
+    else()
+        set(HAS_PACKAGE_${PACKAGE} FALSE PARENT_SCOPE)
+    endif()
+
+endfunction()
+
 
 #Sources files
 set(SOURCES_FILES_WALK
@@ -32,12 +44,25 @@ set(PYTHON_BINDING_FILE
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 #Eigen library dependency
-find_package(Eigen3 REQUIRED)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../eigen)
 
-set(PYBIND11_PYTHON_VERSION 3.8)
-add_subdirectory(../pybind11 pybind11)
-#Enable C++11
+has_package(Eigen3)
+if(HAS_PACKAGE_Eigen3)
+    find_package(Eigen3 REQUIRED)
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../eigen)
+else()
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../eigen Eigen3)
+endif()
+
+set(PYTHON_EXECUTABLE "/usr/bin/python3.9")
+
+has_package(pybind11)
+if(HAS_PACKAGE_pybind11)
+    find_package(pybind11 REQUIRED)
+else()
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../pybind11 pybind11)
+endif()
+
+#Enable C++17
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 #Enable compiler Warning
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall")

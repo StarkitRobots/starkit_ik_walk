@@ -1,10 +1,11 @@
-#ifndef LEGIK_HPP
-#define LEGIK_HPP
+#pragma once
 
 /*****************************************************************************/
-#include <vector>
-#include <string>
 #include <cmath>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 #define IKDEBUG(command)  
 #define IKMSG(command) command
@@ -80,6 +81,3 @@ class IKTest {
 /*****************************************************************************/
 
 }
-
-#endif
-

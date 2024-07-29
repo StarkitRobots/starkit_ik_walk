@@ -1,20 +1,20 @@
 import tkinter as tk
 from tkinter import ttk
 
-from setup.robot_params import attribute_ranges, labels, params, inputs, inputs_ranges
+# from setup.robot_params import attribute_ranges, labels, params, inputs, inputs_ranges
 
-from setup.stabSetup import PIDStab
-from setup.stabSetup import enableStepTimingName,       stepTimingRanges
-from setup.stabSetup import enableFusedRollCOMShift,    fusedRollCOMShiftRanges
-from setup.stabSetup import enableFusedRollHip,         fusedRollHipRanges
-from setup.stabSetup import enableFusedPitchArm,        fusedPitchArmRanges
-from setup.stabSetup import enableFusedPitchHip,        fusedPitchHipRanges
+# from setup.stabSetup import PIDStab
+# from setup.stabSetup import enableStepTimingName,       stepTimingRanges
+# from setup.stabSetup import enableFusedRollCOMShift,    fusedRollCOMShiftRanges
+# from setup.stabSetup import enableFusedRollHip,         fusedRollHipRanges
+# from setup.stabSetup import enableFusedPitchArm,        fusedPitchArmRanges
+# from setup.stabSetup import enableFusedPitchHip,        fusedPitchHipRanges
 
-from setup.stabSetup import fusedRollStabRanges
-from setup.stabSetup import fusedPitchStabRanges
+# from setup.stabSetup import fusedRollStabRanges
+# from setup.stabSetup import fusedPitchStabRanges
 
-from setup.stabSetup import pressStab, pressStabLabels, pressStabRanges
-from setup.pulseSetup import pulseGen, pulseLabels, enableRandomPulse, pulseRanges
+# from setup.stabSetup import pressStab, pressStabLabels, pressStabRanges
+# from setup.pulseSetup import pulseGen, pulseLabels, enableRandomPulse, pulseRanges
 
 class RobotSettingsWindow:
 
@@ -241,34 +241,33 @@ def toggle_enabled():
     params.enabledGain = 1.0 if params.enabledGain == 0.0 else 0.0
     button_enabled.configure(text="Disable" if params.enabledGain == 1.0 else "Enable")
 
-w1 = create_window_1()
-w1.geometry("250x275+1525+0")
-w2 = create_window_2()
-w2.geometry("1450x130+0+0")
+# w1 = create_window_1()
+# w1.geometry("250x275+1525+0")
+# w2 = create_window_2()
+# w2.geometry("1450x130+0+0")
 
 # PIDStabFusedRollWindow  = RobotSettingsWindow(PIDStab.params, fusedRollStabRanges,  "Fused Roll Stabilization")
-PIDStabFusedPitchWindow = RobotSettingsWindow(PIDStab.params, fusedPitchStabRanges, "Fused Pitch Stabilization")
+# PIDStabFusedPitchWindow = RobotSettingsWindow(PIDStab.params, fusedPitchStabRanges, "Fused Pitch Stabilization")
 
 # PIDStabStepTimingWindow     = RobotSettingsWindow(PIDStab.params, stepTimingRanges,         "Step Timing Stabilization",    enableStepTimingName)
 # PIDStabRollCOMShiftWindow   = RobotSettingsWindow(PIDStab.params, fusedRollCOMShiftRanges,  "COM Shift Stabilization",      enableFusedRollCOMShift)
 # PIDStabRollHipWindow        = RobotSettingsWindow(PIDStab.params, fusedRollHipRanges,       "Roll Hip Stabilization",       enableFusedRollHip)
 # PIDStabPitchArmWindow       = RobotSettingsWindow(PIDStab.params, fusedPitchArmRanges,      "Pitch Arm Stabilization",      enableFusedPitchArm)
-PIDStabPitchHipWindow       = RobotSettingsWindow(PIDStab.params, fusedPitchHipRanges,      "Pitch Hip Stabilization",      enableFusedPitchHip)
-
+# PIDStabPitchHipWindow       = RobotSettingsWindow(PIDStab.params, fusedPitchHipRanges,      "Pitch Hip Stabilization",      enableFusedPitchHip)
 
 # PIDStabFusedRollWindow.window.geometry("250x275+75+525")
-PIDStabFusedPitchWindow.window.geometry("250x275+325+525")
+# PIDStabFusedPitchWindow.window.geometry("250x275+325+525")
 
 # PIDStabStepTimingWindow.window  .geometry("250x275+75+200")
 # PIDStabRollCOMShiftWindow.window.geometry("250x275+325+200")
 # PIDStabRollHipWindow.window     .geometry("250x275+575+200")
-PIDStabPitchHipWindow.window    .geometry("250x275+825+200")
+# PIDStabPitchHipWindow.window    .geometry("250x275+825+200")
 # PIDStabPitchArmWindow.window    .geometry("250x335+1075+200")
 
 # PIDStabWindow = RobotSettingsWindow(PIDStab.params, PIDStabRanges, "Arm Stabilization", "enableFusedPitchArm")
 # PIDStabWindow.window.geometry("250x400+0+200")
-rpwind = createRandomPulseWindow()
-rpwind.geometry("250x275+1525+700")
+# rpwind = createRandomPulseWindow()
+# rpwind.geometry("250x275+1525+700")
 # pressStabWindow = createPressStabWindow()
 # pressStabWindow.geometry("250x300+1525+350")
 

@@ -3,22 +3,23 @@
 from controller import Supervisor
 import starkit_ik_walk as sk
 
+modelParams = sk.ModelParams()
+
+modelParams.distFootYOffset = 0.046375
+modelParams.distHipToKnee = 0.141
+modelParams.distKneeToAnkle = 0.14
+modelParams.distAnkleToGround = 0.042
+modelParams.distFeetLateral = 0.092
+
 params = sk.IKWalkParameters()
 
-params.distHipToKnee = 0.141
-params.distKneeToAnkle = 0.14
-params.distAnkleToGround = 0.042
-params.distFeetLateral = 0.092
 params.freq = 1.5
-params.enabledGain = 0.0
-params.supportPhaseRatio = 0.0
-params.footYOffset = 0.03
-params.stepGain = 0.0
-params.riseGain = 0.04
-params.turnGain = 0.0
-params.lateralGain = 0.0
+params.doubleSupportRatio = 0.1
+# params.stepGain = 0.0
+params.riseGain = 0.0
+params.riseDuration = 0.2
 params.trunkZOffset = 0.02
-params.swingGain = 0.02
+params.swingGain = 0.0
 params.swingRollGain = 0.0
 params.swingPhase = 0.25
 params.stepUpVel = 4.0
@@ -43,6 +44,8 @@ params.extraLeftRoll = 0.0
 params.extraRightYaw = 0.0
 params.extraRightPitch = 0.0
 params.extraRightRoll = 0.0
+params.footYOffset = 0.03
+params.footYOffsetPerStepSizeY = 0.2
 
 labels = {}
 
@@ -114,36 +117,36 @@ def send_command(command: sk.IKWalkOutputs):
             # print(getattr(command, name))
         motor.setPosition(getattr(command, name))
 
-inputs = sk.IKWalkInputs()
+# inputs = sk.IKWalkInputs()
 
-inputs.fusedErrorParams.fusedFeedbackX = 0.0
-inputs.fusedErrorParams.fusedFeedbackY = 0.0
-inputs.fusedErrorParams.fusedDerivativeFeedbackX = 0.0
-inputs.fusedErrorParams.fusedDerivativeFeedbackY = 0.0
-inputs.fusedErrorParams.fusedIntegralFeedbackX = 0.0
-inputs.fusedErrorParams.fusedIntegralFeedbackY = 0.0
+# inputs.fusedErrorParams.fusedFeedbackX = 0.0
+# inputs.fusedErrorParams.fusedFeedbackY = 0.0
+# inputs.fusedErrorParams.fusedDerivativeFeedbackX = 0.0
+# inputs.fusedErrorParams.fusedDerivativeFeedbackY = 0.0
+# inputs.fusedErrorParams.fusedIntegralFeedbackX = 0.0
+# inputs.fusedErrorParams.fusedIntegralFeedbackY = 0.0
 
-inputs.fusedErrors.fusedErrorX = 0.0
-inputs.fusedErrors.fusedErrorY = 0.0
-inputs.fusedErrors.fusedDerivativeErrorX = 0.0
-inputs.fusedErrors.fusedDerivativeErrorY = 0.0
-inputs.fusedErrors.fusedIntegralErrorX = 0.0
-inputs.fusedErrors.fusedIntegralErrorY = 0.0
+# inputs.fusedErrors.fusedErrorX = 0.0
+# inputs.fusedErrors.fusedErrorY = 0.0
+# inputs.fusedErrors.fusedDerivativeErrorX = 0.0
+# inputs.fusedErrors.fusedDerivativeErrorY = 0.0
+# inputs.fusedErrors.fusedIntegralErrorX = 0.0
+# inputs.fusedErrors.fusedIntegralErrorY = 0.0
 
-inputs.armParams.biasArmAngleX = 0.0
-inputs.armParams.biasArmAngleY = 0.0
-inputs.armParams.fusedFeedbackArmAngleX = 0.0
-inputs.armParams.fusedFeedbackArmAngleY = 0.2 #0.2, 0.2
-inputs.armParams.fusedDerivativeFeedbackArmAngleX = 0.0
-inputs.armParams.fusedDerivativeFeedbackArmAngleY = 2.4 #0.3, 2.4
-inputs.armParams.fusedIntegralFeedbackArmAngleX = 0.0
-inputs.armParams.fusedIntegralFeedbackArmAngleY = 0.0 #-1.0, 0.0
+# inputs.armParams.biasArmAngleX = 0.0
+# inputs.armParams.biasArmAngleY = 0.0
+# inputs.armParams.fusedFeedbackArmAngleX = 0.0
+# inputs.armParams.fusedFeedbackArmAngleY = 0.2 #0.2, 0.2
+# inputs.armParams.fusedDerivativeFeedbackArmAngleX = 0.0
+# inputs.armParams.fusedDerivativeFeedbackArmAngleY = 2.4 #0.3, 2.4
+# inputs.armParams.fusedIntegralFeedbackArmAngleX = 0.0
+# inputs.armParams.fusedIntegralFeedbackArmAngleY = 0.0 #-1.0, 0.0
 
-inputs.armParams.extension = 0.09
+# inputs.armParams.extension = 0.09
 
-inputs.stepTiming.deadbandRadius = 0.02
-inputs.stepTiming.gainSpeedUp = 5.0
-inputs.stepTiming.gainSlowDown = 10.3
-inputs.stepTiming.weightFactor = 1.4
-inputs.stepTiming.doubleSupportPhaseLen = 3.14
-inputs.stepTiming.gaitFrequencyMax = 2.4
+# inputs.stepTiming.deadbandRadius = 0.02
+# inputs.stepTiming.gainSpeedUp = 5.0
+# inputs.stepTiming.gainSlowDown = 10.3
+# inputs.stepTiming.weightFactor = 1.4
+# inputs.stepTiming.doubleSupportPhaseLen = 3.14
+# inputs.stepTiming.gaitFrequencyMax = 2.4

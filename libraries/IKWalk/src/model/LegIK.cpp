@@ -1,9 +1,5 @@
 /*****************************************************************************/
 #include "LegIK.hpp"
-#include <cmath>
-#include <vector>
-#include <iostream>
-#include <sstream>
 
 using namespace std;
 
@@ -327,4 +323,3 @@ bool IKTest::test_suite() {
 /*****************************************************************************/
 
 }
-

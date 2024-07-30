@@ -6,6 +6,7 @@
 #include "model/JointCommands.hpp"
 #include "model/ModelParams.hpp"
 
+#include "utils/control/VariationBound.hpp"
 #include "utils/geometry/Point.hpp"
 #include "utils/math_functions.hpp"
 
@@ -28,6 +29,25 @@ namespace rhoban
 
         void reset();
 
+    public:
+
+        inline constexpr auto defaultTrunkPitch() const
+        {
+            return utils::deg2rad(commands.stepSizeX > 0.0 
+                ? params.trunkPitchNeutral + (params.trunkPitchForward - params.trunkPitchNeutral) * commands.stepSizeX / params.maxStepSizeX
+                : params.trunkPitchNeutral + (params.trunkPitchBackward - params.trunkPitchNeutral) * commands.stepSizeX / params.maxStepSizeXBackward
+            );
+        }
+
+        inline constexpr auto walkStarted() const noexcept
+        {
+            return stepCount >= 2;
+        }
+
+    public:
+
+        void setCommands(const WalkEngineCommands& newCommands);
+    
     private:
 
         void newStep();
@@ -44,6 +64,7 @@ namespace rhoban
             return (isLeftSupport ? right : left);
         }
 
+
     private:
         
         bool isLeftSupport;
@@ -56,13 +77,6 @@ namespace rhoban
         double _manualSwing;
 
         double swingRollGain;
-
-        double trunkPitch;
-        double trunkPitchOut;
-        double trunkRoll;
-        double trunkRollOut;
-        double trunkHeight;
-        double trunkZOffset;
 
         double phase;
         double stepDuration;

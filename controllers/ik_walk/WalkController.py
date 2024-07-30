@@ -62,7 +62,7 @@ class WalkController:
         )
     
     def step(self, elapsed: float) -> None:
-        self.engine.commands = copy.deepcopy(self.commands)
+        self.engine.setCommands(self.commands)
 
         if self.state == self.State.NotWalking:
             self.engine.reset()
@@ -70,9 +70,8 @@ class WalkController:
                 self.state = self.State.WalkStarting
 
         elif self.state == self.State.WalkStarting:
-            # OTHER STUFF
-            self.state = self.State.Walking
-            pass
+            if self.engine.walkStarted():
+                self.state = self.State.Walking
 
         else: #Walking
             if not self.engine.commands.enableWalk:
@@ -81,7 +80,9 @@ class WalkController:
                 self.engine.commands.stepSizeYaw = 0.0
 
                 self.state = self.State.NotWalking
-            pass
+        
+        self.engine.params.trunkPitch       = self.engine.defaultTrunkPitch()
+        self.engine.params.trunkPitchOut    = self.engine.defaultTrunkPitch()
 
         if self.engine.walk(self.angles, elapsed):
             send_command(self.angles)

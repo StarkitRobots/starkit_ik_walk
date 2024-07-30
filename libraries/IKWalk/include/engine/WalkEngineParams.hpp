@@ -19,6 +19,16 @@ namespace rhoban
          */
         double doubleSupportRatio;
 
+        double maxStepSizeX;
+        double maxStepSizeXBackward;
+        double maxDiffStepSizeX;
+        
+        double maxStepSizeY;
+        double maxDiffStepSizeY;
+
+        double maxStepSizeYaw;
+        double maxDiffStepSizeYaw;
+
         /**
          * Forward length of each foot step
          * in meters
@@ -135,6 +145,11 @@ namespace rhoban
          * <0 bends the trunk backward
          */
         double trunkPitch;
+        double trunkPitchOut;
+
+        double trunkPitchNeutral;
+        double trunkPitchForward;
+        double trunkPitchBackward;
 
         /**
          * Trunk angular rotation
@@ -143,30 +158,7 @@ namespace rhoban
          * <0 bends the trunk on the left
          */
         double trunkRoll;
-
-        /**
-         * Add extra offset on X, Y and Z
-         * direction on left and right feet
-         * in meters
-         */
-        double extraLeftX;
-        double extraLeftY;
-        double extraLeftZ;
-        double extraRightX;
-        double extraRightY;
-        double extraRightZ;
-        
-        /**
-         * Add extra angular offset on
-         * Yaw, Pitch and Roll rotation of 
-         * left and right foot in radians
-         */
-        double extraLeftYaw;
-        double extraLeftPitch;
-        double extraLeftRoll;
-        double extraRightYaw;
-        double extraRightPitch;
-        double extraRightRoll;
+        double trunkRollOut;
 
         double footYOffset;
         double footYOffsetPerStepSizeY;

@@ -28,12 +28,9 @@ namespace rhoban
         auto swingP     = (isLeftSupport ? M_PI : 0.0) + M_PI * 2.0 * params.swingPhase;
         auto swing      = params.swingGain      * sin(M_PI * phase + swingP);
         auto rollSwing  = params.swingRollGain  * sin(M_PI * phase + swingP);
-        
-        // Trunk pitch calculations
-        auto trunkPitchOut = params.trunkPitch;
 
         Eigen::Affine3d trunkPitchRot   (Eigen::AngleAxisd(-params.trunkPitch,     Eigen::Vector3d::UnitY()));
-        Eigen::Affine3d trunkPitchRotPID(Eigen::AngleAxisd(-trunkPitchOut,  Eigen::Vector3d::UnitY()));
+        Eigen::Affine3d trunkPitchRotPID(Eigen::AngleAxisd(-params.trunkPitchOut,  Eigen::Vector3d::UnitY()));
 
         //Default pitch values (no PID)
         Eigen::Affine3d trunkPitchRotLeft = trunkPitchRot;
@@ -49,14 +46,10 @@ namespace rhoban
             trunkPitchRotLeft = trunkPitchRotPID; 
         }
 
-        // Trunk roll calculations
-
-        auto trunkRollOut = params.trunkRoll;
-
         Eigen::Affine3d swingRollRot(Eigen::AngleAxisd(rollSwing, Eigen::Vector3d::UnitX()));
 
         Eigen::Affine3d trunkRollRot    (Eigen::AngleAxisd(params.trunkRoll,    Eigen::Vector3d::UnitX()));
-        Eigen::Affine3d trunkRollRotPID (Eigen::AngleAxisd(trunkRollOut, Eigen::Vector3d::UnitX()));
+        Eigen::Affine3d trunkRollRotPID (Eigen::AngleAxisd(params.trunkRollOut, Eigen::Vector3d::UnitX()));
 
         auto trunkRollRotInverted     = trunkRollRot    .inverse() * swingRollRot;
         auto trunkRollRotPIDInverted  = trunkRollRotPID .inverse() * swingRollRot;
@@ -103,6 +96,20 @@ namespace rhoban
         phase = 0.0;
 
         stepCount = 0;
+    }
+
+    void WalkEngine::setCommands(const WalkEngineCommands& newCommands)
+    {
+        utils::VariationBound< double >::update(commands.stepSizeX, newCommands.stepSizeX, params.maxDiffStepSizeX, 1.0);
+        utils::VariationBound< double >::update(commands.stepSizeY, newCommands.stepSizeY, params.maxDiffStepSizeY, 1.0);
+        utils::VariationBound< double >::update(commands.stepSizeYaw, utils::deg2rad(newCommands.stepSizeYaw), utils::deg2rad(params.maxDiffStepSizeYaw), 1.0);
+
+        commands.stepSizeX = utils::coerce(commands.stepSizeX, -params.maxStepSizeXBackward, params.maxStepSizeX);
+        commands.stepSizeY = utils::coerce(commands.stepSizeY, -params.maxStepSizeY, params.maxStepSizeY);
+        commands.stepSizeYaw = utils::coerce(commands.stepSizeYaw, -utils::deg2rad(params.maxStepSizeYaw), utils::deg2rad(params.maxStepSizeYaw));
+
+        commands.enableWalk = newCommands.enableWalk;
+        commands.enableCircular = newCommands.enableCircular;
     }
 
     void WalkEngine::newStep()
